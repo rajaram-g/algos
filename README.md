@@ -14,7 +14,7 @@ While most of the code is written from scratch, in some cases, it made sense to 
 **Projects**: 
 - [kevin-wayne/algs4](https://github.com/kevin-wayne/algs4)
 - Copyright: 2000-2017, Robert Sedgewick and Kevin Wayne.
-- License: [GNU General Public License v3.0] (https://github.com/kevin-wayne/algs4/blob/master/LICENSE)
+- License: [GNU General Public License v3.0](https://github.com/kevin-wayne/algs4/blob/master/LICENSE)
 
 
 ## Build

@@ -10,7 +10,7 @@ import mlogic.algos.exceptions.LimitException;
  */
 public interface LinkedList<Key extends Comparable<Key>, Value> {
 
-	Node<Key, Value> root();
+	KeyedNode<Key, Value> root();
 
 	/**
 	 * Size of the list
@@ -50,7 +50,7 @@ public interface LinkedList<Key extends Comparable<Key>, Value> {
 	 * @param key
 	 * @return node
 	 */
-	Node<Key, Value> getNode(Key key);
+	KeyedNode<Key, Value> getNode(Key key);
 
 	/**
 	 * Traverse list using key and removes the node if key is found.

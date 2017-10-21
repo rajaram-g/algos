@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
  * @author Rajaram G
  *
  */
-public class ChainedHashTable<Key extends Comparable<Key>, Value> implements HashTable<Key, Value> {
+public class ChainedHashTable2<Key extends Comparable<Key>, Value> implements HashTable<Key, Value> {
 
 	/**
 	 * Initial size of the bucket array (also the size of increments)
@@ -24,7 +24,7 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 	/**
 	 * Array of hash buckets
 	 */
-	private LinkedList<Key, Value>[] buckets;
+	private List<Tuple<Key, Value>>[] buckets;
 
 	/**
 	 * Maximum entry
@@ -39,10 +39,10 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 	/**
 	 * Constructor
 	 */
-	public ChainedHashTable() {
-		this.buckets = new LinkedList[INITIAL_SIZE];
+	public ChainedHashTable2() {
+		this.buckets = new List[INITIAL_SIZE];
 		for (int i = 0; i < INITIAL_SIZE; i++)
-			this.buckets[i] = new SinglyLinkedList<Key, Value>();
+			this.buckets[i] = new SinglyLinkedList2<Tuple<Key, Value>>();
 	}
 
 	/**
@@ -79,12 +79,13 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 		if (key == null)
 			return;
 		Integer h = hash(key);
-		if (this.buckets[h].get(key) == null) {
-			this.buckets[h].put(key, value);
+		Tuple<Key, Value> tuple = new Tuple<Key, Value>(key, value);
+		if (!this.buckets[h].contains(tuple)) {
+			this.buckets[h].put(tuple);
 			if (this.maximum == null || key.compareTo(this.maximum.key) > 0)
-				this.maximum = new Tuple<Key, Value>(key, value);
+				this.maximum = tuple;
 			if (this.minimum == null || key.compareTo(this.minimum.key) < 0)
-				this.minimum = new Tuple<Key, Value>(key, value);
+				this.minimum = tuple;
 			this.size++;
 		}
 
@@ -103,10 +104,11 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 		if (key == null)
 			return null;
 		Integer h = hash(key);
-		Value ret = this.buckets[h].get(key);
-		if (ret == null)
+		Tuple<Key, Value> find = new Tuple<Key, Value>(key, null);
+		Tuple<Key, Value> result = this.buckets[h].get(find);
+		if (result == null)
 			throw new NoSuchElementException();
-		return ret;
+		return result.value;
 	}
 
 	/**
@@ -122,8 +124,9 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 		if (key == null)
 			return;
 		Integer h = hash(key);
-		if (this.buckets[h].get(key) != null) {
-			this.buckets[h].remove(key);
+		Tuple<Key, Value> toRemove = new Tuple<Key, Value>(key, null);
+		if (this.buckets[h].contains(toRemove)) {
+			this.buckets[h].remove(toRemove);
 			if (this.maximum.key.equals(key))
 				resetMaximum();
 			if (this.minimum.key.equals(key))
@@ -140,16 +143,17 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 		this.maximum = null;
 		boolean isNull = true;
 		for (int i = 0; i < this.buckets.length; i++) {
-			KeyedNode<Key, Value> item = this.buckets[i].root();
-			while (item != null) {
+			for (Tuple<Key, Value> item : this.buckets[i]) {
 				if (isNull) {
-					this.maximum = new Tuple<Key, Value>(item.key(), item.value());
+					this.maximum = new Tuple<Key, Value>(item.key, item.value);
 					isNull = false;
 				} else {
-					if (item.key().compareTo(this.maximum.key) > 0)
-						this.maximum = new Tuple<Key, Value>(item.key(), item.value());
+					if (item.compareTo(this.maximum) > 0) {
+						this.maximum.key = item.key;
+						this.maximum.value = item.value;
+					}
 				}
-				item = item.next();
+
 			}
 		}
 
@@ -162,17 +166,19 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 		this.minimum = null;
 		boolean isNull = true;
 		for (int i = 0; i < this.buckets.length; i++) {
-			KeyedNode<Key, Value> item = this.buckets[i].root();
-			while (item != null) {
+			for (Tuple<Key, Value> item : this.buckets[i]) {
 				if (isNull) {
-					this.minimum = new Tuple<Key, Value>(item.key(), item.value());
+					this.minimum = new Tuple<Key, Value>(item.key, item.value);
 					isNull = false;
 				} else {
-					if (item.key().compareTo(this.minimum.key) < 0)
-						this.minimum = new Tuple<Key, Value>(item.key(), item.value());
+					if (item.compareTo(this.minimum) < 0) {
+						this.minimum.key = item.key;
+						this.minimum.value = item.value;
+					}
 				}
-				item = item.next();
+
 			}
+
 		}
 	}
 
@@ -209,20 +215,19 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 		Tuple<Key, Value> predecessor = null;
 		boolean isNull = true;
 		for (int i = 0; i < this.buckets.length; i++) {
-			KeyedNode<Key, Value> item = this.buckets[i].root();
-			while (item != null) {
-				if (item.key().compareTo(key) < 0) {
+			for (Tuple<Key, Value> item : this.buckets[i]) {
+				if (item.key.compareTo(key) < 0) {
 					if (isNull) {
-						predecessor = new Tuple<Key, Value>(item.key(), item.value());
+						predecessor = new Tuple<Key, Value>(item.key, item.value);
 						isNull = false;
 					} else {
-						if (item.key().compareTo(predecessor.key) > 0) {
-							predecessor.key = item.key();
-							predecessor.value = item.value();
+						if (item.compareTo(predecessor) > 0) {
+							predecessor.key = item.key;
+							predecessor.value = item.value;
 						}
 					}
 				}
-				item = item.next();
+
 			}
 		}
 		return predecessor;
@@ -241,20 +246,18 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 		Tuple<Key, Value> successor = null;
 		boolean isNull = true;
 		for (int i = 0; i < this.buckets.length; i++) {
-			KeyedNode<Key, Value> item = this.buckets[i].root();
-			while (item != null) {
-				if (item.key().compareTo(key) > 0) {
+			for (Tuple<Key, Value> item : this.buckets[i]) {
+				if (item.key.compareTo(key) > 0) {
 					if (isNull) {
-						successor = new Tuple<Key, Value>(item.key(), item.value());
+						successor = new Tuple<Key, Value>(item.key, item.value);
 						isNull = false;
 					} else {
-						if (item.key().compareTo(successor.key) < 0) {
-							successor.key = item.key();
-							successor.value = item.value();
+						if (item.compareTo(successor) < 0) {
+							successor.key = item.key;
+							successor.value = item.value;
 						}
 					}
 				}
-				item = item.next();
 			}
 		}
 		return successor;

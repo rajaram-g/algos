@@ -24,13 +24,13 @@ public class DoublyLinkedList<Key extends Comparable<Key>, Value> extends Singly
 			throw new LimitException("List size is limited by the maximum integer value...");
 		if (key == null)
 			return;
-		Node<Key, Value> node = getNode(key);
+		KeyedNode<Key, Value> node = getNode(key);
 		if (node != null) {
 			node.setValue(value);
 			return;
 		}
 
-		Node<Key, Value> newNode = new Node<Key, Value>(key, value);
+		KeyedNode<Key, Value> newNode = new KeyedNode<Key, Value>(key, value);
 		newNode.setNext(this.root);
 		if (this.root != null)
 			this.root.setPrevious(newNode);
@@ -49,12 +49,12 @@ public class DoublyLinkedList<Key extends Comparable<Key>, Value> extends Singly
 		if (key == null)
 			return;
 
-		Node<Key, Value> newNode = new Node<Key, Value>(key, value);
+		KeyedNode<Key, Value> newNode = new KeyedNode<Key, Value>(key, value);
 		if (this.root == null) {
 			this.root = newNode;
 			this.size++;
 		} else {
-			Node<Key, Value> node = this.root;
+			KeyedNode<Key, Value> node = this.root;
 			while (true) {
 				if (key.compareTo(node.key()) == 0) {
 					node.setValue(value);
@@ -64,7 +64,7 @@ public class DoublyLinkedList<Key extends Comparable<Key>, Value> extends Singly
 					this.size++;
 					break;
 				}
-				Node<Key, Value> next = node.next();
+				KeyedNode<Key, Value> next = node.next();
 				if (next == null) {
 					insertAfter(node, newNode);
 					this.size++;
@@ -81,7 +81,7 @@ public class DoublyLinkedList<Key extends Comparable<Key>, Value> extends Singly
 	 * @param key
 	 */
 	public void remove(Key key) {
-		Node<Key, Value> node = this.root;
+		KeyedNode<Key, Value> node = this.root;
 		while (node != null) {
 			if (node.key().equals(key)) {
 				delete(node);
@@ -98,8 +98,8 @@ public class DoublyLinkedList<Key extends Comparable<Key>, Value> extends Singly
 	 * @param node
 	 * @param newNode
 	 */
-	private void insertAfter(Node<Key, Value> node, Node<Key, Value> newNode) {
-		Node<Key, Value> tmp = node.next();
+	private void insertAfter(KeyedNode<Key, Value> node, KeyedNode<Key, Value> newNode) {
+		KeyedNode<Key, Value> tmp = node.next();
 		node.setNext(newNode);
 		newNode.setPrevious(node);
 		newNode.setNext(tmp);
@@ -114,8 +114,8 @@ public class DoublyLinkedList<Key extends Comparable<Key>, Value> extends Singly
 	 * @param node
 	 * @param newNode
 	 */
-	private void insertBefore(Node<Key, Value> node, Node<Key, Value> newNode) {
-		Node<Key, Value> tmp = node.previous();
+	private void insertBefore(KeyedNode<Key, Value> node, KeyedNode<Key, Value> newNode) {
+		KeyedNode<Key, Value> tmp = node.previous();
 		newNode.setNext(node);
 		node.setPrevious(newNode);
 		newNode.setPrevious(tmp);
@@ -132,9 +132,9 @@ public class DoublyLinkedList<Key extends Comparable<Key>, Value> extends Singly
 	 * 
 	 * @param node
 	 */
-	private void delete(Node<Key, Value> node) {
-		Node<Key, Value> next = node.next();
-		Node<Key, Value> previous = node.previous();
+	private void delete(KeyedNode<Key, Value> node) {
+		KeyedNode<Key, Value> next = node.next();
+		KeyedNode<Key, Value> previous = node.previous();
 		if (previous == null) {
 			this.root = next;
 		} else

@@ -1,6 +1,6 @@
 /**
- * Includes utilities to analyze performance of algorithms by plotting and
- * classifying growth functions
+ * Utilities to analyze performance of algorithms by plotting and classifying
+ * growth functions
  * 
  * @author Rajaram G
  *

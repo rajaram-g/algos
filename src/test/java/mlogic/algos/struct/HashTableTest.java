@@ -1,20 +1,17 @@
 package mlogic.algos.struct;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-
-import mlogic.algos.struct.ChainedHashTable;
-import mlogic.algos.struct.HashTable;
 
 /**
  * @author Rajaram G
@@ -29,6 +26,7 @@ public class HashTableTest {
 	public static Collection getParameters() {
 		List<Class> testClasses = new ArrayList<Class>();
 		testClasses.add(ChainedHashTable.class);
+		testClasses.add(ChainedHashTable2.class);
 		return testClasses;
 	}
 
@@ -76,14 +74,14 @@ public class HashTableTest {
 	 * Test method for
 	 * {@link mlogic.algos.struct.HashTable#remove(java.lang.Comparable)}.
 	 */
-	@Test
+	@Test(expected = NoSuchElementException.class)
 	public void testRemove() {
 		HashTable<Integer, Integer> ht = null;
 		ht = createHashTable(ht);
 		ht.put(0, 0);
 		ht.put(10, 100);
 		ht.remove(0);
-		assertNull(ht.get(0));
+		ht.get(0);
 	}
 
 	/**

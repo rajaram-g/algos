@@ -6,12 +6,12 @@ package mlogic.algos.struct;
  * @author Rajaram G
  *
  */
-public class Queue<Key extends Comparable<Key>, Value> {
+public class Queue<T> {
 
 	/**
 	 * First item in the queue
 	 */
-	private Node<Key, Value> root;
+	private Node<T> root;
 
 	/**
 	 * Size of queue
@@ -28,19 +28,19 @@ public class Queue<Key extends Comparable<Key>, Value> {
 	/**
 	 * Adds an entry to the bottom of the queue
 	 * 
-	 * @param key
-	 * @param value
+	 * @param item
 	 */
-	public void enqueue(Key key, Value value) {
-		Node<Key, Value> newNode = new Node<Key, Value>(key, value);
+	public void enqueue(T item) {
+		Node<T> newNode = new Node<T>();
+		newNode.item = item;
 
 		if (this.root == null)
 			this.root = newNode;
 		else {
-			Node<Key, Value> node = this.root;
-			while (node.hasNext())
-				node = node.next();
-			node.setNext(newNode);
+			Node<T> node = this.root;
+			while (node.next != null)
+				node = node.next;
+			node.next = newNode;
 		}
 		this.size++;
 	}
@@ -50,12 +50,12 @@ public class Queue<Key extends Comparable<Key>, Value> {
 	 * 
 	 * @return node
 	 */
-	public Node<Key, Value> dequeue() {
-		Node<Key, Value> node = this.root;
+	public T dequeue() {
+		Node<T> node = this.root;
 		if (node != null) {
-			this.root = node.next();
+			this.root = node.next;
 			this.size--;
-			return node;
+			return node.item;
 		} else
 			return null;
 	}

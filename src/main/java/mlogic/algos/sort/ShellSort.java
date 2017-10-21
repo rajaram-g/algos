@@ -3,7 +3,7 @@ package mlogic.algos.sort;
 /**
  * Incrementally sorts items that are far apart before doing a final insertion
  * sort. Improves speed due to the property that insertion sort is faster on
- * partially-sorted lists. Achieves O(n log n) is average case.
+ * partially-sorted lists. Achieves close to linear performance in average case.
  * 
  * @author Rajaram G
  *

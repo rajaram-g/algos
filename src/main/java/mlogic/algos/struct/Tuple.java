@@ -17,4 +17,13 @@ public class Tuple<Key extends Comparable<Key>, Value> implements Comparable<Tup
 		return this.key.compareTo(o.key);
 	}
 
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof Tuple<?, ?>) {
+			return this.key.equals(((Tuple<Key, Value>) other).key);
+		}
+
+		return false;
+	}
+
 }

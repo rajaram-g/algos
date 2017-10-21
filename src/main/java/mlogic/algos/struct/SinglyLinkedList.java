@@ -14,7 +14,7 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 	/**
 	 * First node in the list
 	 */
-	protected Node<Key, Value> root;
+	protected KeyedNode<Key, Value> root;
 
 	protected int size = 0;
 
@@ -24,7 +24,7 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 	 * @see mathological.algos.struct.LinkedList#root()
 	 */
 	@Override
-	public Node<Key, Value> root() {
+	public KeyedNode<Key, Value> root() {
 		return this.root;
 	}
 
@@ -49,13 +49,13 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 			throw new LimitException("List size is limited by the maximum integer value...");
 		if (key == null)
 			return;
-		Node<Key, Value> node = getNode(key);
+		KeyedNode<Key, Value> node = getNode(key);
 		if (node != null) {
 			node.setValue(value);
 			return;
 		}
 
-		Node<Key, Value> newNode = new Node<Key, Value>(key, value);
+		KeyedNode<Key, Value> newNode = new KeyedNode<Key, Value>(key, value);
 		newNode.setNext(this.root);
 		this.root = newNode;
 		this.size++;
@@ -72,13 +72,13 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 		if (key == null)
 			return;
 
-		Node<Key, Value> newNode = new Node<Key, Value>(key, value);
+		KeyedNode<Key, Value> newNode = new KeyedNode<Key, Value>(key, value);
 		if (this.root == null) {
 			this.root = newNode;
 			this.size++;
 		} else {
-			Node<Key, Value> node = this.root;
-			Node<Key, Value> prev = null;
+			KeyedNode<Key, Value> node = this.root;
+			KeyedNode<Key, Value> prev = null;
 			while (true) {
 				if (key.compareTo(node.key()) == 0) {
 					node.setValue(value);
@@ -88,7 +88,7 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 					this.size++;
 					break;
 				}
-				Node<Key, Value> next = node.next();
+				KeyedNode<Key, Value> next = node.next();
 				if (next == null) {
 					insertAfter(node, newNode);
 					this.size++;
@@ -107,7 +107,7 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 	 */
 	@Override
 	public Value get(Key key) {
-		Node<Key, Value> node = getNode(key);
+		KeyedNode<Key, Value> node = getNode(key);
 		if (node == null)
 			return null;
 		else
@@ -120,10 +120,10 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 	 * @see mathological.algos.struct.LinkedList#getNode(Key)
 	 */
 	@Override
-	public Node<Key, Value> getNode(Key key) {
+	public KeyedNode<Key, Value> getNode(Key key) {
 		if (key == null)
 			return null;
-		Node<Key, Value> node = this.root;
+		KeyedNode<Key, Value> node = this.root;
 		while (node != null) {
 			if (node.key().equals(key))
 				return node;
@@ -139,8 +139,8 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 	 */
 	@Override
 	public void remove(Key key) {
-		Node<Key, Value> node = this.root;
-		Node<Key, Value> prev = null;
+		KeyedNode<Key, Value> node = this.root;
+		KeyedNode<Key, Value> prev = null;
 		while (node != null) {
 			if (node.key().equals(key)) {
 				delete(node, prev);
@@ -162,7 +162,7 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 		if (this.root == null)
 			return "[]";
 		StringBuffer buf = new StringBuffer("[");
-		Node<Key, Value> node = this.root;
+		KeyedNode<Key, Value> node = this.root;
 		buf.append(node.value());
 		while (node.hasNext()) {
 			node = node.next();
@@ -180,8 +180,8 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 	 * @param node
 	 * @param newNode
 	 */
-	private void insertAfter(Node<Key, Value> node, Node<Key, Value> newNode) {
-		Node<Key, Value> tmp = node.next();
+	private void insertAfter(KeyedNode<Key, Value> node, KeyedNode<Key, Value> newNode) {
+		KeyedNode<Key, Value> tmp = node.next();
 		node.setNext(newNode);
 		newNode.setNext(tmp);
 	}
@@ -192,7 +192,7 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 	 * @param node
 	 * @param newNode
 	 */
-	private void insertBetween(Node<Key, Value> before, Node<Key, Value> after, Node<Key, Value> newNode) {
+	private void insertBetween(KeyedNode<Key, Value> before, KeyedNode<Key, Value> after, KeyedNode<Key, Value> newNode) {
 		if (before == null)
 			this.root = newNode;
 		else
@@ -206,8 +206,8 @@ public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements Lin
 	 * 
 	 * @param node
 	 */
-	private void delete(Node<Key, Value> node, Node<Key, Value> previous) {
-		Node<Key, Value> next = node.next();
+	private void delete(KeyedNode<Key, Value> node, KeyedNode<Key, Value> previous) {
+		KeyedNode<Key, Value> next = node.next();
 		if (previous == null) {
 			this.root = next;
 		} else

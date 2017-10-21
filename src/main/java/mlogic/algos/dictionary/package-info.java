@@ -1,5 +1,5 @@
 /**
- * Provides dictionary implementations based on popular data structures
+ * Dictionary implementations based on popular data structures
  * 
  * @author Rajaram G
  *

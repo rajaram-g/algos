@@ -1,7 +1,10 @@
 package mlogic.algos.dictionary;
 
-import mlogic.algos.struct.DoublyLinkedList;
+import java.util.Iterator;
+
 import mlogic.algos.struct.Node;
+import mlogic.algos.struct.SortedDoublyLinkedList;
+import mlogic.algos.struct.Tuple;
 
 /**
  * Dictionary implementation based on a sorted doubly-linked list
@@ -14,13 +17,13 @@ public class SortedLinkedListDictionary implements Dictionary<String, String> {
 	/**
 	 * Doubly linked list to store the dictionary entries
 	 */
-	private DoublyLinkedList<String, String> dictionary;
+	private SortedDoublyLinkedList<Tuple<String, String>> dictionary;
 
 	/**
 	 * Constructor
 	 */
 	public SortedLinkedListDictionary() {
-		this.dictionary = new DoublyLinkedList<String, String>();
+		this.dictionary = new SortedDoublyLinkedList<Tuple<String, String>>();
 	}
 
 	/**
@@ -32,8 +35,11 @@ public class SortedLinkedListDictionary implements Dictionary<String, String> {
 	public String get(String key) {
 		if (key == null)
 			return null;
-
-		return this.dictionary.get(key);
+		Tuple<String, String> find = new Tuple<String, String>(key, null);
+		Tuple<String, String> found = this.dictionary.get(find);
+		if (found == null)
+			return null;
+		return found.value;
 	}
 
 	/**
@@ -47,7 +53,7 @@ public class SortedLinkedListDictionary implements Dictionary<String, String> {
 	public void put(String key, String value) {
 		if (key == null)
 			return;
-		this.dictionary.orderedPut(key, value);
+		this.dictionary.put(new Tuple<String, String>(key, value));
 	}
 
 	/**
@@ -60,7 +66,7 @@ public class SortedLinkedListDictionary implements Dictionary<String, String> {
 	public void remove(String key) {
 		if (key == null)
 			return;
-		this.dictionary.remove(key);
+		this.dictionary.remove(new Tuple<String, String>(key, null));
 	}
 
 	/**
@@ -72,16 +78,11 @@ public class SortedLinkedListDictionary implements Dictionary<String, String> {
 	 * @return key
 	 */
 	public String maximum() {
-		Node<String, String> node = this.dictionary.root();
-		if (node == null)
-			return null;
-		while (true) {
-			if (node.next() != null)
-				node = node.next();
-			else
-				break;
-		}
-		return node.key();
+		Iterator<Tuple<String, String>> iter = this.dictionary.iterator();
+		Tuple<String, String> item = null;
+		while (iter.hasNext())
+			item = iter.next();
+		return item.key;
 	}
 
 	/**
@@ -93,11 +94,12 @@ public class SortedLinkedListDictionary implements Dictionary<String, String> {
 	 * @return key
 	 */
 	public String minimum() {
-		Node<String, String> node = this.dictionary.root();
-		if (node == null)
-			return null;
+		Iterator<Tuple<String, String>> iter = this.dictionary.iterator();
+		Tuple<String, String> item = null;
+		if (iter.hasNext())
+			return iter.next().key;
 		else
-			return node.key();
+			return null;
 	}
 
 	/**
@@ -112,13 +114,14 @@ public class SortedLinkedListDictionary implements Dictionary<String, String> {
 	public String predecessor(String key) {
 		if (key == null)
 			return null;
-		Node<String, String> mark = this.dictionary.getNode(key);
-		if (mark == null)
+		Node<Tuple<String, String>> node = this.dictionary.getNode(new Tuple<String, String>(key, null));
+		if (node == null)
 			return null;
-		Node<String, String> pred = mark.previous();
+
+		Node<Tuple<String, String>> pred = node.previous;
 
 		if (pred != null)
-			return pred.key();
+			return pred.item.key;
 		else
 			return null;
 	}
@@ -135,14 +138,17 @@ public class SortedLinkedListDictionary implements Dictionary<String, String> {
 	public String successor(String key) {
 		if (key == null)
 			return null;
-		Node<String, String> mark = this.dictionary.getNode(key);
-		if (mark == null)
+		Node<Tuple<String, String>> node = this.dictionary.getNode(new Tuple<String, String>(key, null));
+		if (node == null)
 			return null;
-		Node<String, String> succ = mark.next();
-		if (succ != null)
-			return succ.key();
+
+		Node<Tuple<String, String>> next = node.next;
+
+		if (next != null)
+			return next.item.key;
 		else
 			return null;
+
 	}
 
 	/**

@@ -33,7 +33,7 @@ public class RandomizationHelper {
 	 * duplicates.
 	 * 
 	 * @param n
-	 *            - size of array
+	 *            size of array
 	 * @return array of random integers
 	 */
 	public static Integer[] getRandomArrayOfSizeN(int n) {
@@ -50,7 +50,7 @@ public class RandomizationHelper {
 	 * duplicates.
 	 * 
 	 * @param n
-	 *            - size of array
+	 *            size of array
 	 * @return array of random integers
 	 */
 	public static Integer[] getShuffledIntArrayOfSizeN(int n) {
@@ -68,7 +68,7 @@ public class RandomizationHelper {
 	 * representation of random integers. May contain duplicates.
 	 * 
 	 * @param n
-	 *            - size of array
+	 *            size of array
 	 * @return array of strings
 	 */
 	public static String[] getRandomStringArrayOfSizeN(int n) {
@@ -87,7 +87,7 @@ public class RandomizationHelper {
 	 * representation of random integers. Do not contain duplicates.
 	 * 
 	 * @param n
-	 *            - size of array
+	 *            size of array
 	 * @return array of strings
 	 */
 	public static String[] getShuffledStringArrayOfSizeN(int n) {
@@ -109,7 +109,7 @@ public class RandomizationHelper {
 	 * discussion</a>
 	 * 
 	 * @param array
-	 *            to be shuffled
+	 *            array to be shuffled
 	 */
 	public static <T> void shuffle(T[] array) {
 		if (array == null)
@@ -130,11 +130,11 @@ public class RandomizationHelper {
 	 * 
 	 * @param array
 	 * @param m
-	 *            - first index
+	 *            first index
 	 * @param n
-	 *            - second index
+	 *            second index
 	 */
-	private static <T> void swap(T[] array, int m, int n) {
+	public static <T> void swap(T[] array, int m, int n) {
 		T tmp = array[m];
 		array[m] = array[n];
 		array[n] = tmp;

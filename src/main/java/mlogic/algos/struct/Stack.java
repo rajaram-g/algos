@@ -6,12 +6,12 @@ package mlogic.algos.struct;
  * @author Rajaram G
  *
  */
-public class Stack<Key extends Comparable<Key>, Value> {
+public class Stack<T> {
 
 	/**
 	 * Top of the stack
 	 */
-	private Node<Key, Value> root;
+	private Node<T> root;
 
 	/**
 	 * Size of the stack
@@ -28,29 +28,29 @@ public class Stack<Key extends Comparable<Key>, Value> {
 	/**
 	 * Adds an entry to the top of the stack
 	 * 
-	 * @param key
-	 * @param value
+	 * @param item
 	 */
-	public void push(Key key, Value value) {
-		Node<Key, Value> node = new Node<Key, Value>(key, value);
+	public void push(T item) {
+		Node<T> node = new Node<T>();
+		node.item = item;
 
 		if (this.root != null)
-			node.setNext(this.root);
+			node.next = this.root;
 		this.root = node;
 		this.size++;
 	}
 
 	/**
-	 * Removes and returns a node from the top of the stack
+	 * Removes and returns an item from the top of the stack
 	 * 
 	 * @return node
 	 */
-	public Node<Key, Value> pop() {
-		Node<Key, Value> node = this.root;
+	public T pop() {
+		Node<T> node = this.root;
 		if (node != null) {
-			this.root = node.next();
+			this.root = node.next;
 			this.size--;
-			return node;
+			return node.item;
 		} else
 			return null;
 	}

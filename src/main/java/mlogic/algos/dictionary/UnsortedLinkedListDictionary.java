@@ -1,7 +1,8 @@
 package mlogic.algos.dictionary;
 
-import mlogic.algos.struct.DoublyLinkedList;
-import mlogic.algos.struct.Node;
+import mlogic.algos.struct.DoublyLinkedList2;
+import mlogic.algos.struct.List;
+import mlogic.algos.struct.Tuple;
 
 /**
  * Dictionary implementation based on an unsorted doubly linked list
@@ -14,13 +15,15 @@ public class UnsortedLinkedListDictionary implements Dictionary<String, String> 
 	/**
 	 * Doubly linked list to store the dictionary entries
 	 */
-	private DoublyLinkedList<String, String> dictionary;
+	// private DoublyLinkedList<String, String> dictionary;
+	private List<Tuple<String, String>> dictionary;
 
 	/**
 	 * Constructor
 	 */
 	public UnsortedLinkedListDictionary() {
-		this.dictionary = new DoublyLinkedList<String, String>();
+		// this.dictionary = new DoublyLinkedList<String, String>();
+		this.dictionary = new DoublyLinkedList2<Tuple<String, String>>();
 	}
 
 	/**
@@ -32,7 +35,11 @@ public class UnsortedLinkedListDictionary implements Dictionary<String, String> 
 	public String get(String key) {
 		if (key == null)
 			return null;
-		return this.dictionary.get(key);
+		Tuple<String, String> find = new Tuple<String, String>(key, null);
+		Tuple<String, String> found = this.dictionary.get(find);
+		if (found == null)
+			return null;
+		return found.value;
 	}
 
 	/**
@@ -46,7 +53,7 @@ public class UnsortedLinkedListDictionary implements Dictionary<String, String> 
 	public void put(String key, String value) {
 		if (key == null)
 			return;
-		this.dictionary.put(key, value);
+		this.dictionary.put(new Tuple<String, String>(key, value));
 	}
 
 	/**
@@ -59,7 +66,7 @@ public class UnsortedLinkedListDictionary implements Dictionary<String, String> 
 	public void remove(String key) {
 		if (key == null)
 			return;
-		this.dictionary.remove(key);
+		this.dictionary.remove(new Tuple<String, String>(key, null));
 	}
 
 	/**
@@ -68,16 +75,16 @@ public class UnsortedLinkedListDictionary implements Dictionary<String, String> 
 	 * @return key
 	 */
 	public String maximum() {
-		Node<String, String> node = this.dictionary.root();
-		if (node == null)
-			return null;
-		Node<String, String> max = node;
-		while (node.hasNext()) {
-			node = node.next();
-			if (node.key().compareTo(max.key()) > 0)
-				max = node;
+		boolean first = true;
+		String max = null;
+		for (Tuple<String, String> item : this.dictionary) {
+			if (first) {
+				max = item.key;
+				first = false;
+			} else if (max.compareTo(item.key) < 0)
+				max = item.key;
 		}
-		return max.key();
+		return max;
 	}
 
 	/**
@@ -86,16 +93,17 @@ public class UnsortedLinkedListDictionary implements Dictionary<String, String> 
 	 * @return key
 	 */
 	public String minimum() {
-		Node<String, String> node = this.dictionary.root();
-		if (node == null)
-			return null;
-		Node<String, String> min = node;
-		while (node.hasNext()) {
-			node = node.next();
-			if (node.key().compareTo(min.key()) < 0)
-				min = node;
+		boolean first = true;
+		String min = null;
+		for (Tuple<String, String> item : this.dictionary) {
+			if (first) {
+				min = item.key;
+				first = false;
+			} else if (min.compareTo(item.key) > 0)
+				min = item.key;
 		}
-		return min.key();
+		return min;
+
 	}
 
 	/**
@@ -112,22 +120,19 @@ public class UnsortedLinkedListDictionary implements Dictionary<String, String> 
 	public String predecessor(String key) {
 		if (key == null)
 			return null;
-		Node<String, String> mark = this.dictionary.getNode(key);
-		if (mark == null)
+		Tuple<String, String> found = this.dictionary.get(new Tuple<String, String>(key, null));
+		if (found == null)
 			return null;
-		Node<String, String> node = this.dictionary.root();
-		Node<String, String> pred = null;
-		while (node != null) {
-			if (node.key().compareTo(mark.key()) < 0) {
-				if (pred == null || node.key().compareTo(pred.key()) > 0)
-					pred = node;
-			}
-			node = node.next();
+
+		boolean first = true;
+		String pred = null;
+		for (Tuple<String, String> item : this.dictionary) {
+			if (item.key.compareTo(key) < 0)
+				if (pred == null || item.key.compareTo(pred) > 0)
+					pred = item.key;
 		}
-		if (pred != null)
-			return pred.key();
-		else
-			return null;
+		return pred;
+
 	}
 
 	/**
@@ -144,22 +149,19 @@ public class UnsortedLinkedListDictionary implements Dictionary<String, String> 
 	public String successor(String key) {
 		if (key == null)
 			return null;
-		Node<String, String> mark = this.dictionary.getNode(key);
-		if (mark == null)
+		Tuple<String, String> found = this.dictionary.get(new Tuple<String, String>(key, null));
+		if (found == null)
 			return null;
-		Node<String, String> node = this.dictionary.root();
-		Node<String, String> succ = null;
-		while (node != null) {
-			if (node.key().compareTo(mark.key()) > 0) {
-				if (succ == null || node.key().compareTo(succ.key()) < 0)
-					succ = node;
-			}
-			node = node.next();
+
+		boolean first = true;
+		String successor = null;
+		for (Tuple<String, String> item : this.dictionary) {
+			if (item.key.compareTo(key) > 0)
+				if (successor == null || item.key.compareTo(successor) < 0)
+					successor = item.key;
 		}
-		if (succ != null)
-			return succ.key();
-		else
-			return null;
+		return successor;
+
 	}
 
 	/**

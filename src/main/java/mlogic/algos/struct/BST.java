@@ -14,17 +14,17 @@ package mlogic.algos.struct;
 public interface BST<Key extends Comparable<Key>, Value> {
 
 	/**
-	 * Returns the size of the tree
+	 * @return size of the tree
 	 */
 	Integer size();
 
 	/**
-	 * Returns the height of the tree
+	 * @return height of the tree
 	 */
 	Integer height();
 
 	/**
-	 * Returns a string representing the tree (root and all its descendants)
+	 * @return string representing the tree (root and all its descendants)
 	 */
 	String toString();
 
@@ -42,7 +42,7 @@ public interface BST<Key extends Comparable<Key>, Value> {
 	 * if the key is found, or null if the key is not found.
 	 * 
 	 * @param key
-	 * @return value
+	 * @return node matching the specified key
 	 */
 	BinaryNode<Key, Value> get(Key key);
 
@@ -75,7 +75,7 @@ public interface BST<Key extends Comparable<Key>, Value> {
 	 * left most entry in the tree.
 	 * 
 	 * @param node
-	 * @return predecessor node
+	 * @return node containing key and value for predecessor
 	 */
 	BinaryNode<Key, Value> predecessor(BinaryNode<Key, Value> node);
 
@@ -84,8 +84,8 @@ public interface BST<Key extends Comparable<Key>, Value> {
 	 * of it in the tree. Returns null if the given key is not found or it is
 	 * the right most entry in the tree.
 	 * 
-	 * @param key
-	 * @return successor Node containing key and value for successor
+	 * @param node
+	 * @return node containing key and value for successor
 	 */
 	BinaryNode<Key, Value> successor(BinaryNode<Key, Value> node);
 

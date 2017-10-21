@@ -108,6 +108,8 @@ public class RandomizationHelper {
 	 * "https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array">StackExchange
 	 * discussion</a>
 	 * 
+	 * @param <T>
+	 *            type of elements in array
 	 * @param array
 	 *            array to be shuffled
 	 */
@@ -128,6 +130,8 @@ public class RandomizationHelper {
 	/**
 	 * Swaps the elements between two indices in an array
 	 * 
+	 * @param <T>
+	 *            type of elements in array
 	 * @param array
 	 * @param m
 	 *            first index

@@ -22,7 +22,7 @@ public interface Dictionary<Key extends Comparable<Key>, Value> {
 	 * the key is not present, then creates a new entry.
 	 * 
 	 * @param key
-	 * @return value
+	 * @param value
 	 */
 	public void put(Key key, Value value);
 
@@ -31,7 +31,6 @@ public interface Dictionary<Key extends Comparable<Key>, Value> {
 	 * the key is not present, then does nothing.
 	 * 
 	 * @param key
-	 * @return value
 	 */
 	public void remove(Key key);
 
@@ -53,7 +52,9 @@ public interface Dictionary<Key extends Comparable<Key>, Value> {
 	 * Returns the largest key from the dictionary that is smaller than the
 	 * input key
 	 * 
-	 * @return key
+	 * @param key
+	 *            input key
+	 * @return predecessor key
 	 */
 	public Key predecessor(Key key);
 
@@ -61,7 +62,9 @@ public interface Dictionary<Key extends Comparable<Key>, Value> {
 	 * Returns the smallest key from the dictionary that is larger than the
 	 * input key
 	 * 
-	 * @return key
+	 * @param key
+	 *            input key
+	 * @return successor key
 	 */
 	public Key successor(Key key);
 

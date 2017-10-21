@@ -36,8 +36,10 @@ public class BinaryHeap<T extends Comparable<T>> {
 	/**
 	 * Rearranges the items in the array to form a binary heap
 	 * 
+	 * @param <T>
+	 *            type of element in array
 	 * @param heap
-	 *            - the array to be heapified
+	 *            the array to be heapified
 	 */
 	public static <T extends Comparable<T>> void heapify(T[] heap) {
 		BinaryHeap<T> bh = new BinaryHeap<T>(heap);
@@ -48,8 +50,10 @@ public class BinaryHeap<T extends Comparable<T>> {
 	/**
 	 * Tests if the input array is arranged as a binary heap
 	 * 
+	 * @param <T>
+	 *            type of element in array
 	 * @param arrayToTest
-	 *            - the array to be tested
+	 *            the array to be tested
 	 * @return true or false
 	 */
 	public static <T extends Comparable<T>> boolean isHeap(T[] arrayToTest) {

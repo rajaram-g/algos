@@ -12,8 +12,10 @@ public class InsertionSort<T extends Comparable<T>> extends Sort<T> {
 	/**
 	 * Sorts the given array using the insertion sort algorithm
 	 * 
+	 * @param <T>
+	 *            type of element in array
 	 * @param array
-	 *            - array to be sorted
+	 *            array to be sorted
 	 */
 	public static <T extends Comparable<T>> void sort(T[] array) {
 		InsertionSort<T> sorter = new InsertionSort<T>(array);

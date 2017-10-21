@@ -72,7 +72,7 @@ public class OrderOfGrowthEstimator {
 		}
 
 		/**
-		 * Gets the growth class display label
+		 * @return growth class display label
 		 */
 		public String label() {
 			return this.label;
@@ -88,7 +88,7 @@ public class OrderOfGrowthEstimator {
 	 *            non-zero input sizes in increasing order
 	 * @param yseries
 	 *            run time (or space) values
-	 * @return
+	 * @return Growth Class enum
 	 */
 	public static GrowthClass estimate(int[] xseries, long[] yseries) {
 		checkArguments(xseries, yseries);

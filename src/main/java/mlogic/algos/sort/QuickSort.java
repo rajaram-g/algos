@@ -14,8 +14,10 @@ public class QuickSort<T extends Comparable<T>> extends Sort<T> {
 	/**
 	 * Sorts the given array using the quick sort algorithm
 	 * 
+	 * @param <T>
+	 *            type of element in array
 	 * @param array
-	 *            - array to be sorted
+	 *            array to be sorted
 	 */
 	public static <T extends Comparable<T>> void sort(T[] array) {
 		QuickSort<T> sorter = new QuickSort<T>(array);

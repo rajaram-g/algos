@@ -19,8 +19,10 @@ public class HeapSort<T extends Comparable<T>> extends Sort<T> {
 	/**
 	 * Sorts the given array using a binary heap.
 	 * 
+	 * @param <T>
+	 *            type of element in array
 	 * @param array
-	 *            - array to be sorted
+	 *            array to be sorted
 	 */
 	public static <T extends Comparable<T>> void sort(T[] array) {
 		HeapSort<T> sorter = new HeapSort<T>(array);

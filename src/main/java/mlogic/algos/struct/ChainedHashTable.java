@@ -48,7 +48,8 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 	/**
 	 * Maps the key's hashCode value to an index of the bucket array
 	 * 
-	 * @link http://algs4.cs.princeton.edu/34hash/
+	 * @see <a href=
+	 *      "http://algs4.cs.princeton.edu/34hash/">http://algs4.cs.princeton.edu/34hash/</a>
 	 * 
 	 */
 	@Override
@@ -117,7 +118,6 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 	 * then delete the entry, else, do nothing.
 	 * 
 	 * @param key
-	 * @return value
 	 */
 	@Override
 	public void remove(Key key) {

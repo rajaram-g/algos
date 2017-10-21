@@ -19,7 +19,7 @@ public class Queue<T> {
 	private int size = 0;
 
 	/**
-	 * Returns the size of the queue
+	 * @return size of the queue
 	 */
 	public Integer size() {
 		return this.size;

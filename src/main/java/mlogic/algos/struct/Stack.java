@@ -19,7 +19,7 @@ public class Stack<T> {
 	private int size;
 
 	/**
-	 * Returns the size of the stack
+	 * @return size of the stack
 	 */
 	public Integer size() {
 		return this.size;

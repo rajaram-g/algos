@@ -22,8 +22,10 @@ public class MergeSort<T extends Comparable<T>> extends Sort<T> {
 	/**
 	 * Sorts the given array using the merge sort algorithm
 	 * 
+	 * @param <T>
+	 *            type of element in array
 	 * @param array
-	 *            - array to be sorted
+	 *            array to be sorted
 	 */
 	public static <T extends Comparable<T>> void sort(T[] array) {
 		MergeSort<T> sorter = new MergeSort<T>(array);

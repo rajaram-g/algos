@@ -109,6 +109,8 @@ public class BinaryNode<Key extends Comparable<Key>, Value> {
 	/**
 	 * String representation of the node
 	 * 
+	 * @param indent
+	 *            string to be used for indenting levels in the tree
 	 * @return string with node attributes
 	 */
 	public String toString(String indent) {
@@ -128,6 +130,8 @@ public class BinaryNode<Key extends Comparable<Key>, Value> {
 	/**
 	 * String representation of the node and the tree under it
 	 * 
+	 * @param indent
+	 *            string to be used for indenting levels in the tree
 	 * @return tree string
 	 */
 	public String toTreeString(String indent) {

@@ -17,7 +17,7 @@ public class BigORecord {
 	private SimpleStringProperty algo;
 
 	/**
-	 * Gets the name of the algorithm
+	 * @return name of the algorithm
 	 */
 	public String getAlgo() {
 		return algo.get();
@@ -25,6 +25,9 @@ public class BigORecord {
 
 	/**
 	 * Sets the name of the algorithm
+	 * 
+	 * @param algo
+	 *            name of the algorithm
 	 */
 	public void setAlgo(String algo) {
 		this.algo.set(algo);
@@ -36,7 +39,7 @@ public class BigORecord {
 	private SimpleStringProperty clazz;
 
 	/**
-	 * Gets the growth classification
+	 * @return growth classification
 	 */
 	public String getClazz() {
 		return clazz.get();
@@ -44,6 +47,9 @@ public class BigORecord {
 
 	/**
 	 * Sets the growth classification
+	 * 
+	 * @param clazz
+	 *            growth classification
 	 */
 	public void setClazz(String clazz) {
 		this.clazz.set(clazz);

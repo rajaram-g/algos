@@ -13,12 +13,14 @@ package mlogic.algos.struct;
 public interface HashTable<Key extends Comparable<Key>, Value> {
 
 	/**
-	 * Returns the size of the hash table
+	 * @return size of the hash table
 	 */
 	Integer size();
 
 	/**
-	 * Compute an integer hash value given a key
+	 * @param key
+	 *            key to be hashed
+	 * @return an integer hash value given a key
 	 */
 	Integer hash(Key key);
 
@@ -48,21 +50,20 @@ public interface HashTable<Key extends Comparable<Key>, Value> {
 	 * then delete the entry, else, do nothing.
 	 * 
 	 * @param key
-	 * @return value
 	 */
 	void remove(Key key);
 
 	/**
 	 * Returns the entry with the largest key in the table
 	 * 
-	 * @return tuple
+	 * @return tuple containing the maximum key and corresponding value
 	 */
 	Tuple<Key, Value> maximum();
 
 	/**
 	 * Returns the entry with smallest key in the table
 	 * 
-	 * @return tuple
+	 * @return tuple containing the minimum key and corresponding value
 	 */
 	Tuple<Key, Value> minimum();
 
@@ -70,7 +71,7 @@ public interface HashTable<Key extends Comparable<Key>, Value> {
 	 * Finds the entry with the largest key that is smaller than the input key
 	 * 
 	 * @param key
-	 * @return tuple
+	 * @return tuple containing predecessor key and corresponding value
 	 */
 	Tuple<Key, Value> predecessor(Key key);
 
@@ -78,7 +79,7 @@ public interface HashTable<Key extends Comparable<Key>, Value> {
 	 * Finds the entry with the smallest key that is larger than the input key
 	 * 
 	 * @param key
-	 * @return tuple
+	 * @return tuple containing successor key and corresponding value
 	 */
 	Tuple<Key, Value> successor(Key key);
 

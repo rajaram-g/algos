@@ -12,8 +12,10 @@ public class SelectionSort<T extends Comparable<T>> extends Sort<T> {
 	/**
 	 * Sorts the given array using the selection sort algorithm
 	 * 
+	 * @param <T>
+	 *            type of element in array
 	 * @param array
-	 *            - array to be sorted
+	 *            array to be sorted
 	 */
 	public static <T extends Comparable<T>> void sort(T[] array) {
 		SelectionSort<T> sorter = new SelectionSort<T>(array);

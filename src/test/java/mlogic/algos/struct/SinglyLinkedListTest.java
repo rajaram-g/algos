@@ -1,7 +1,7 @@
 package mlogic.algos.struct;
 
 import mlogic.algos.struct.LinkedList;
-import mlogic.algos.struct.SinglyLinkedList;
+import mlogic.algos.struct.SinglyLinkedListOld;
 
 public class SinglyLinkedListTest extends LinkedListTest {
 
@@ -12,7 +12,7 @@ public class SinglyLinkedListTest extends LinkedListTest {
 	 */
 	@Override
 	public LinkedList<Integer, Integer> createLinkedList() {
-		return new SinglyLinkedList<Integer, Integer>();
+		return new SinglyLinkedListOld<Integer, Integer>();
 	}
 
 }

@@ -9,7 +9,7 @@ import mlogic.algos.exceptions.LimitException;
  * @author Rajaram G
  *
  */
-public class SinglyLinkedList<Key extends Comparable<Key>, Value> implements LinkedList<Key, Value> {
+public class SinglyLinkedListOld<Key extends Comparable<Key>, Value> implements LinkedList<Key, Value> {
 
 	/**
 	 * First node in the list

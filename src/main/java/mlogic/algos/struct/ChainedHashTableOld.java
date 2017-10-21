@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
  * @author Rajaram G
  *
  */
-public class ChainedHashTable<Key extends Comparable<Key>, Value> implements HashTable<Key, Value> {
+public class ChainedHashTableOld<Key extends Comparable<Key>, Value> implements HashTable<Key, Value> {
 
 	/**
 	 * Initial size of the bucket array (also the size of increments)
@@ -39,10 +39,10 @@ public class ChainedHashTable<Key extends Comparable<Key>, Value> implements Has
 	/**
 	 * Constructor
 	 */
-	public ChainedHashTable() {
+	public ChainedHashTableOld() {
 		this.buckets = new LinkedList[INITIAL_SIZE];
 		for (int i = 0; i < INITIAL_SIZE; i++)
-			this.buckets[i] = new SinglyLinkedList<Key, Value>();
+			this.buckets[i] = new SinglyLinkedListOld<Key, Value>();
 	}
 
 	/**

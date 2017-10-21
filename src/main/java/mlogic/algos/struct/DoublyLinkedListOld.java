@@ -9,7 +9,7 @@ import mlogic.algos.exceptions.LimitException;
  * @author Rajaram G
  *
  */
-public class DoublyLinkedList<Key extends Comparable<Key>, Value> extends SinglyLinkedList<Key, Value> {
+public class DoublyLinkedListOld<Key extends Comparable<Key>, Value> extends SinglyLinkedListOld<Key, Value> {
 
 	/**
 	 * Inserts the new item at the head of the list - used for unsorted linked

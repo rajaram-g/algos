@@ -1,6 +1,6 @@
 package mlogic.algos.dictionary;
 
-import mlogic.algos.struct.ChainedHashTable;
+import mlogic.algos.struct.ChainedHashTableOld;
 import mlogic.algos.struct.HashTable;
 import mlogic.algos.struct.Tuple;
 
@@ -23,7 +23,7 @@ public class HashTableDictionary implements Dictionary<String, String> {
 	 * Constructor
 	 */
 	public HashTableDictionary() {
-		this.dictionary = new ChainedHashTable<String, String>();
+		this.dictionary = new ChainedHashTableOld<String, String>();
 	}
 
 	/**

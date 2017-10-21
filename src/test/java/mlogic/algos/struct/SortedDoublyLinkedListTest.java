@@ -1,6 +1,6 @@
 package mlogic.algos.struct;
 
-public class SinglyLinkedListTest extends LinkedListTest {
+public class SortedDoublyLinkedListTest extends SortedLinkedListTest {
 
 	/*
 	 * (non-Javadoc)
@@ -9,7 +9,7 @@ public class SinglyLinkedListTest extends LinkedListTest {
 	 */
 	@Override
 	public List<Integer> createLinkedList() {
-		return new SinglyLinkedList<Integer>();
+		return new SortedDoublyLinkedList<Integer>();
 	}
 
 }

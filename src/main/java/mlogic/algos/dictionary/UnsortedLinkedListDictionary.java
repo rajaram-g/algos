@@ -1,6 +1,6 @@
 package mlogic.algos.dictionary;
 
-import mlogic.algos.struct.DoublyLinkedList2;
+import mlogic.algos.struct.DoublyLinkedList;
 import mlogic.algos.struct.List;
 import mlogic.algos.struct.Tuple;
 
@@ -23,7 +23,7 @@ public class UnsortedLinkedListDictionary implements Dictionary<String, String> 
 	 */
 	public UnsortedLinkedListDictionary() {
 		// this.dictionary = new DoublyLinkedList<String, String>();
-		this.dictionary = new DoublyLinkedList2<Tuple<String, String>>();
+		this.dictionary = new DoublyLinkedList<Tuple<String, String>>();
 	}
 
 	/**

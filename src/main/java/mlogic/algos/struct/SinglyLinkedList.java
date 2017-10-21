@@ -12,11 +12,11 @@ import mlogic.algos.exceptions.LimitException;
  * @author Rajaram G
  *
  */
-public class SinglyLinkedList2<T> implements List<T> {
+public class SinglyLinkedList<T> implements List<T> {
 
 	class LinkedListIterator implements Iterator<T> {
 
-		Node<T> current = SinglyLinkedList2.this.root;
+		Node<T> current = SinglyLinkedList.this.root;
 
 		/*
 		 * (non-Javadoc)

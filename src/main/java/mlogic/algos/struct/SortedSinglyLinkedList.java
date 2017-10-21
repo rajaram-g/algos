@@ -9,7 +9,7 @@ import mlogic.algos.exceptions.LimitException;
  * @author Rajaram G
  *
  */
-public class SortedSinglyLinkedList2<T extends Comparable<T>> extends SinglyLinkedList2<T> {
+public class SortedSinglyLinkedList<T extends Comparable<T>> extends SinglyLinkedList<T> {
 
 	/*
 	 * (non-Javadoc)

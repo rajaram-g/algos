@@ -14,7 +14,7 @@ public class BBSTDictionaryTest extends DictionaryTest {
 	@Override
 	public Dictionary<String, String> createDictionary() {
 
-		return new HashTableDictionary();
+		return new BBSTDictionary();
 	}
 
 }

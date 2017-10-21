@@ -9,7 +9,7 @@ import mlogic.algos.exceptions.LimitException;
  * @author Rajaram G
  *
  */
-public class DoublyLinkedList2<T> extends SinglyLinkedList2<T> {
+public class DoublyLinkedList<T> extends SinglyLinkedList<T> {
 
 	/*
 	 * (non-Javadoc)

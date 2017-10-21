@@ -1,8 +1,5 @@
 package mlogic.algos.struct;
 
-import mlogic.algos.struct.DoublyLinkedListOld;
-import mlogic.algos.struct.LinkedList;
-
 public class DoublyLinkedListTest extends LinkedListTest {
 
 	/*
@@ -11,8 +8,8 @@ public class DoublyLinkedListTest extends LinkedListTest {
 	 * @see mathological.algos.struct.LinkedListTest#createLinkedList()
 	 */
 	@Override
-	public LinkedList<Integer, Integer> createLinkedList() {
-		return new DoublyLinkedListOld<Integer, Integer>();
+	public List<Integer> createLinkedList() {
+		return new DoublyLinkedList<Integer>();
 	}
 
 }

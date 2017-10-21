@@ -9,7 +9,7 @@ import mlogic.algos.exceptions.LimitException;
  * @author Rajaram G
  *
  */
-public class SortedDoublyLinkedList<T extends Comparable<T>> extends DoublyLinkedList2<T> {
+public class SortedDoublyLinkedList<T extends Comparable<T>> extends DoublyLinkedList<T> {
 
 	/*
 	 * (non-Javadoc)

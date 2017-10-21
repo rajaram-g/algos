@@ -25,8 +25,7 @@ public class HashTableTest {
 	@Parameters
 	public static Collection getParameters() {
 		List<Class> testClasses = new ArrayList<Class>();
-		testClasses.add(ChainedHashTableOld.class);
-		testClasses.add(ChainedHashTable2.class);
+		testClasses.add(ChainedHashTable.class);
 		return testClasses;
 	}
 

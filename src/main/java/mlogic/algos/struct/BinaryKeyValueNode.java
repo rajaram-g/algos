@@ -57,6 +57,7 @@ public class BinaryKeyValueNode<Key extends Comparable<Key>, Value> {
 	 * @param key
 	 * @param value
 	 * @param orientation
+	 *            defines if node is a left or right child of its parent
 	 */
 	public BinaryKeyValueNode(Key key, Value value, Orientation orientation) {
 		this.key = key;

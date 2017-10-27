@@ -55,9 +55,9 @@ public class BinaryNode<T extends Comparable<T>> {
 	/**
 	 * Constructor
 	 * 
-	 * @param key
-	 * @param value
+	 * @param item
 	 * @param orientation
+	 *            defines if node is a left or right child of its parent
 	 */
 	public BinaryNode(T item, Orientation orientation) {
 		this.item = item;

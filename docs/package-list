@@ -1,6 +1,7 @@
 mlogic.algos.analysis
 mlogic.algos.dictionary
 mlogic.algos.exceptions
+mlogic.algos.graph
 mlogic.algos.sort
 mlogic.algos.struct
 mlogic.algos.util

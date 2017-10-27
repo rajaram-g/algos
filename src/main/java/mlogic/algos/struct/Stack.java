@@ -59,7 +59,8 @@ public class Stack<T> {
 
 	/**
 	 * 
-	 * @return an array of items arranged in LIFO order
+	 * @param array
+	 *            Array to be populated with items arranged in LIFO order
 	 */
 	public void toArray(T[] array) {
 		int current = 0;

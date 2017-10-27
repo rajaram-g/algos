@@ -4,6 +4,7 @@ package mlogic.algos.sort;
  * @author Rajaram G
  *
  * @param <T>
+ *            Comparable item to be sorted
  */
 public abstract class Sort<T extends Comparable<T>> {
 

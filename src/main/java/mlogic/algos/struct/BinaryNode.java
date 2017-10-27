@@ -8,7 +8,7 @@ package mlogic.algos.struct;
  * @author Rajaram G
  *
  */
-public class TBinaryNode<T extends Comparable<T>> {
+public class BinaryNode<T extends Comparable<T>> {
 
 	/**
 	 * Item in node
@@ -18,17 +18,17 @@ public class TBinaryNode<T extends Comparable<T>> {
 	/**
 	 * Left child
 	 */
-	TBinaryNode<T> left;
+	BinaryNode<T> left;
 
 	/**
 	 * Right child
 	 */
-	TBinaryNode<T> right;
+	BinaryNode<T> right;
 
 	/**
 	 * Parent
 	 */
-	TBinaryNode<T> parent;
+	BinaryNode<T> parent;
 
 	/**
 	 * Specifies whether the node is to the left or right of its parent
@@ -59,7 +59,7 @@ public class TBinaryNode<T extends Comparable<T>> {
 	 * @param value
 	 * @param orientation
 	 */
-	public TBinaryNode(T item, Orientation orientation) {
+	public BinaryNode(T item, Orientation orientation) {
 		this.item = item;
 		this.orientation = orientation;
 	}

@@ -1,6 +1,6 @@
 package mlogic.algos.struct;
 
-import mlogic.algos.struct.TBinaryNode.Orientation;
+import mlogic.algos.struct.BinaryNode.Orientation;
 
 /**
  * Stores a collection of items such that they can be dequeued in their natural
@@ -14,7 +14,7 @@ public class PriorityQueue<T extends Comparable<T>> {
 	/**
 	 * First item in the queue
 	 */
-	private TBinaryNode<T> root;
+	private BinaryNode<T> root;
 
 	/**
 	 * Size of queue
@@ -37,7 +37,7 @@ public class PriorityQueue<T extends Comparable<T>> {
 	public void enqueue(T item) {
 		if (item == null)
 			throw new IllegalArgumentException("Priority queue cannot store a null item.");
-		TBinaryNode<T> newNode = new TBinaryNode<T>(item, Orientation.NEUTRAL);
+		BinaryNode<T> newNode = new BinaryNode<T>(item, Orientation.NEUTRAL);
 
 		this.root = pushInto(newNode, this.root);
 
@@ -84,7 +84,7 @@ public class PriorityQueue<T extends Comparable<T>> {
 	 * @param node
 	 * @return
 	 */
-	private String toTreeString(TBinaryNode<T> node, String indent, String dir) {
+	private String toTreeString(BinaryNode<T> node, String indent, String dir) {
 		if (node == null)
 			return "";
 		StringBuffer buf = new StringBuffer();
@@ -103,7 +103,7 @@ public class PriorityQueue<T extends Comparable<T>> {
 	 * @param parent
 	 * @param child
 	 */
-	private void setLeftChild(TBinaryNode<T> parent, TBinaryNode<T> child) {
+	private void setLeftChild(BinaryNode<T> parent, BinaryNode<T> child) {
 		parent.left = child;
 		if (child != null) {
 			child.parent = parent;
@@ -118,7 +118,7 @@ public class PriorityQueue<T extends Comparable<T>> {
 	 * @param parent
 	 * @param child
 	 */
-	private void setRightChild(TBinaryNode<T> parent, TBinaryNode<T> child) {
+	private void setRightChild(BinaryNode<T> parent, BinaryNode<T> child) {
 		parent.right = child;
 		if (child != null) {
 			child.parent = parent;
@@ -134,7 +134,7 @@ public class PriorityQueue<T extends Comparable<T>> {
 	 * @param node
 	 * @return removed node
 	 */
-	private TBinaryNode<T> pullUp(TBinaryNode<T> node) {
+	private BinaryNode<T> pullUp(BinaryNode<T> node) {
 		if (node == null)
 			return null;
 		else {
@@ -153,7 +153,7 @@ public class PriorityQueue<T extends Comparable<T>> {
 			// case 4: node has left and right, promote left, push left's right
 			// into
 			else {
-				TBinaryNode<T> tmp = pullUp(node.left);
+				BinaryNode<T> tmp = pullUp(node.left);
 				setRightChild(node.left, node.right);
 				setLeftChild(node.left, tmp);
 				return node.left;
@@ -169,7 +169,7 @@ public class PriorityQueue<T extends Comparable<T>> {
 	 * @param node
 	 * @return new node at the top of the sub-tree
 	 */
-	private TBinaryNode<T> pushInto(TBinaryNode<T> newNode, TBinaryNode<T> node) {
+	private BinaryNode<T> pushInto(BinaryNode<T> newNode, BinaryNode<T> node) {
 		if (node == null) {
 			node = newNode;
 			return node;

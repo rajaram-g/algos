@@ -76,6 +76,23 @@ public class SinglyLinkedList<T> implements List<T> {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see mlogic.algos.struct.List#toArray()
+	 */
+	@Override
+	public T[] toArray() {
+		T[] array = (T[]) new Object[this.size];
+
+		int current = 0;
+		for (T item : this) {
+			array[current++] = item;
+		}
+		return array;
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Iterable#iterator()
 	 */
 	@Override

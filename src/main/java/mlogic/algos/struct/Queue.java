@@ -60,4 +60,11 @@ public class Queue<T> {
 			return null;
 	}
 
+	/**
+	 * @return true if queue is empty
+	 */
+	public boolean isEmpty() {
+		return this.size == 0;
+	}
+
 }

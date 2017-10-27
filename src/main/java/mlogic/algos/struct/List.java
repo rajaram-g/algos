@@ -57,4 +57,9 @@ public interface List<T> extends Iterable<T> {
 	 */
 	String toString();
 
+	/**
+	 * @return Array representation of the list
+	 */
+	T[] toArray();
+
 }

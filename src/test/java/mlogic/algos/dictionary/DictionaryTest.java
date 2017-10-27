@@ -4,9 +4,9 @@
 package mlogic.algos.dictionary;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -127,9 +127,22 @@ public abstract class DictionaryTest {
 		int initSize = testDict.size();
 		testDict.remove(keyToRemove);
 
-		assertNull(testDict.get(keyToRemove));
+		try {
+			testDict.get(keyToRemove);
+			fail(keyToRemove + " has not been removed");
+		} catch (NoSuchElementException e) {
+
+		}
 		assert (testDict.size() == (initSize - 1));
 		testDict.put(keyToRemove, valueToRemove);
+
+	}
+
+	/**
+	 * @param keyToRemove
+	 */
+	private void fail(String keyToRemove) {
+		// TODO Auto-generated method stub
 
 	}
 

@@ -1,5 +1,7 @@
 package mlogic.algos.struct;
 
+import java.util.Arrays;
+
 /**
  * LIFO Stack
  * 
@@ -55,4 +57,33 @@ public class Stack<T> {
 			return null;
 	}
 
+	/**
+	 * 
+	 * @return an array of items arranged in LIFO order
+	 */
+	public void toArray(T[] array) {
+		int current = 0;
+		Node<T> node = this.root;
+		while (node != null) {
+			array[current++] = node.item;
+			node = node.next;
+		}
+
+	}
+
+	/**
+	 * 
+	 * @return a string represrntation of the array of items arranged in LIFO
+	 *         order
+	 */
+	public String toString() {
+		T[] array = (T[]) new Object[this.size];
+		this.toArray(array);
+
+		if (array != null)
+			return Arrays.toString(array);
+		else
+			return null;
+
+	}
 }

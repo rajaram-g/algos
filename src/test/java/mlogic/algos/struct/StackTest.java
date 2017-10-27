@@ -3,6 +3,8 @@
  */
 package mlogic.algos.struct;
 
+import java.util.Arrays;
+
 import junit.framework.TestCase;
 
 /**
@@ -30,4 +32,21 @@ public class StackTest extends TestCase {
 		assertEquals(null, stack.pop());
 	}
 
+	public void testToString() {
+		Stack<Integer> stack = new Stack<Integer>();
+		stack.push(10);
+		stack.push(9);
+		stack.push(8);
+		assertEquals("[8, 9, 10]", stack.toString());
+	}
+
+	public void testToArray() {
+		Stack<Integer> stack = new Stack<Integer>();
+		stack.push(10);
+		stack.push(9);
+		stack.push(8);
+		Integer[] array = new Integer[stack.size()];
+		stack.toArray(array);
+		assertEquals("[8, 9, 10]", Arrays.toString(array));
+	}
 }

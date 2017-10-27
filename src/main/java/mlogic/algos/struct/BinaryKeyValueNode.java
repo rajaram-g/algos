@@ -8,7 +8,7 @@ package mlogic.algos.struct;
  * @author Rajaram G
  *
  */
-public class BinaryNode<Key extends Comparable<Key>, Value> {
+public class BinaryKeyValueNode<Key extends Comparable<Key>, Value> {
 
 	public Key key;
 
@@ -17,17 +17,17 @@ public class BinaryNode<Key extends Comparable<Key>, Value> {
 	/**
 	 * Left child
 	 */
-	BinaryNode<Key, Value> left;
+	BinaryKeyValueNode<Key, Value> left;
 
 	/**
 	 * Right child
 	 */
-	BinaryNode<Key, Value> right;
+	BinaryKeyValueNode<Key, Value> right;
 
 	/**
 	 * Parent
 	 */
-	BinaryNode<Key, Value> parent;
+	BinaryKeyValueNode<Key, Value> parent;
 
 	/**
 	 * Specifies whether the node is to the left or right of its parent
@@ -58,7 +58,7 @@ public class BinaryNode<Key extends Comparable<Key>, Value> {
 	 * @param value
 	 * @param orientation
 	 */
-	public BinaryNode(Key key, Value value, Orientation orientation) {
+	public BinaryKeyValueNode(Key key, Value value, Orientation orientation) {
 		this.key = key;
 		this.value = value;
 		this.orientation = orientation;

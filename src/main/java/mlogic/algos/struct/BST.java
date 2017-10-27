@@ -44,7 +44,7 @@ public interface BST<Key extends Comparable<Key>, Value> {
 	 * @param key
 	 * @return node matching the specified key
 	 */
-	BinaryNode<Key, Value> get(Key key);
+	BinaryKeyValueNode<Key, Value> get(Key key);
 
 	/**
 	 * Traverses the binary tree using the key If key is found, removes the
@@ -60,14 +60,14 @@ public interface BST<Key extends Comparable<Key>, Value> {
 	 * 
 	 * @return value
 	 */
-	BinaryNode<Key, Value> maximum();
+	BinaryKeyValueNode<Key, Value> maximum();
 
 	/**
 	 * Returns the left-most node in the tree
 	 * 
 	 * @return value
 	 */
-	BinaryNode<Key, Value> minimum();
+	BinaryKeyValueNode<Key, Value> minimum();
 
 	/**
 	 * Finds a node using the given key and returns the node just to the left of
@@ -77,7 +77,7 @@ public interface BST<Key extends Comparable<Key>, Value> {
 	 * @param node
 	 * @return node containing key and value for predecessor
 	 */
-	BinaryNode<Key, Value> predecessor(BinaryNode<Key, Value> node);
+	BinaryKeyValueNode<Key, Value> predecessor(BinaryKeyValueNode<Key, Value> node);
 
 	/**
 	 * Finds a node using the given key and returns the node just to the right
@@ -87,6 +87,6 @@ public interface BST<Key extends Comparable<Key>, Value> {
 	 * @param node
 	 * @return node containing key and value for successor
 	 */
-	BinaryNode<Key, Value> successor(BinaryNode<Key, Value> node);
+	BinaryKeyValueNode<Key, Value> successor(BinaryKeyValueNode<Key, Value> node);
 
 }

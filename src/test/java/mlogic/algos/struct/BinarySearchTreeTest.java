@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import mlogic.algos.struct.BST;
-import mlogic.algos.struct.BinaryNode;
+import mlogic.algos.struct.BinaryKeyValueNode;
 import mlogic.algos.struct.BinarySearchTree;
 import mlogic.algos.util.RandomizationHelper;
 
@@ -60,7 +60,7 @@ public class BinarySearchTreeTest {
 	@Test
 	public void testGet() {
 		BST<Integer, Integer> tree = createTestTree();
-		BinaryNode<Integer, Integer> node = tree.get(4);
+		BinaryKeyValueNode<Integer, Integer> node = tree.get(4);
 		assertEquals(new Integer(4), node.value);
 
 	}

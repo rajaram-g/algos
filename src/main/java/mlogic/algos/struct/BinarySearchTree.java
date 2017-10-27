@@ -1,6 +1,6 @@
 package mlogic.algos.struct;
 
-import mlogic.algos.struct.BinaryNode.Orientation;
+import mlogic.algos.struct.BinaryKeyValueNode.Orientation;
 
 /**
  * Implementation of an unbalanced binary tree. New items are inserted to the
@@ -19,7 +19,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	/**
 	 * The root node of the binary tree
 	 */
-	protected BinaryNode<Key, Value> root;
+	protected BinaryKeyValueNode<Key, Value> root;
 
 	/*
 	 * (non-Javadoc)
@@ -75,7 +75,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @see mathological.algos.struct.BST#get(Key)
 	 */
 	@Override
-	public BinaryNode<Key, Value> get(Key key) {
+	public BinaryKeyValueNode<Key, Value> get(Key key) {
 		if (key == null)
 			return null;
 		return get(this.root, key);
@@ -103,7 +103,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @see mathological.algos.struct.BST#maximum()
 	 */
 	@Override
-	public BinaryNode<Key, Value> maximum() {
+	public BinaryKeyValueNode<Key, Value> maximum() {
 		if (this.root != null)
 			return maximum(this.root);
 		else
@@ -116,7 +116,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @see mathological.algos.struct.BST#minimum()
 	 */
 	@Override
-	public BinaryNode<Key, Value> minimum() {
+	public BinaryKeyValueNode<Key, Value> minimum() {
 		if (this.root != null)
 			return minimum(this.root);
 		else
@@ -130,7 +130,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * BinaryNode)
 	 */
 	@Override
-	public BinaryNode<Key, Value> predecessor(BinaryNode<Key, Value> node) {
+	public BinaryKeyValueNode<Key, Value> predecessor(BinaryKeyValueNode<Key, Value> node) {
 		if (node.hasLeft())
 			return maximum(node.left);
 		else if (node.isRoot())
@@ -138,7 +138,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 		else if (node.isRight())
 			return node.parent;
 		else {
-			BinaryNode<Key, Value> tmp = node.parent;
+			BinaryKeyValueNode<Key, Value> tmp = node.parent;
 			while (tmp != null) {
 				if (tmp.isRight())
 					return tmp.parent;
@@ -155,7 +155,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * BinaryNode)
 	 */
 	@Override
-	public BinaryNode<Key, Value> successor(BinaryNode<Key, Value> node) {
+	public BinaryKeyValueNode<Key, Value> successor(BinaryKeyValueNode<Key, Value> node) {
 		if (node.hasRight())
 			return minimum(node.right);
 		else if (node.isRoot())
@@ -163,7 +163,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 		else if (node.isLeft())
 			return node.parent;
 		else {
-			BinaryNode<Key, Value> tmp = node.parent;
+			BinaryKeyValueNode<Key, Value> tmp = node.parent;
 			while (tmp != null) {
 				if (tmp.isLeft())
 					return tmp.parent;
@@ -182,7 +182,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param node
 	 * @return height
 	 */
-	protected Integer height(BinaryNode<Key, Value> node) {
+	protected Integer height(BinaryKeyValueNode<Key, Value> node) {
 		if (node == null)
 			return 0;
 		else
@@ -199,9 +199,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param value
 	 * @return current node
 	 */
-	private BinaryNode<Key, Value> put(BinaryNode<Key, Value> node, Key key, Value value) {
+	private BinaryKeyValueNode<Key, Value> put(BinaryKeyValueNode<Key, Value> node, Key key, Value value) {
 		if (node == null)
-			return new BinaryNode<Key, Value>(key, value, Orientation.NEUTRAL);
+			return new BinaryKeyValueNode<Key, Value>(key, value, Orientation.NEUTRAL);
 
 		if (key.compareTo(node.key) == 0) {
 			node.value = value;
@@ -230,7 +230,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param value
 	 * @return current node
 	 */
-	private BinaryNode<Key, Value> get(BinaryNode<Key, Value> node, Key key) {
+	private BinaryKeyValueNode<Key, Value> get(BinaryKeyValueNode<Key, Value> node, Key key) {
 		if (node == null)
 			return null;
 
@@ -253,7 +253,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param key
 	 * @return current node after removal of target key and re-balancing
 	 */
-	private BinaryNode<Key, Value> remove(BinaryNode<Key, Value> node, Key key) {
+	private BinaryKeyValueNode<Key, Value> remove(BinaryKeyValueNode<Key, Value> node, Key key) {
 		if (node == null)
 			return null;
 
@@ -293,19 +293,19 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param node
 	 * @return current node
 	 */
-	private BinaryNode<Key, Value> delete(BinaryNode<Key, Value> node) {
+	private BinaryKeyValueNode<Key, Value> delete(BinaryKeyValueNode<Key, Value> node) {
 		if (node.isLeaf()) {
 			node = null;
 			return null;
 		}
 
 		if (node.right != null) {
-			BinaryNode<Key, Value> minright = minimum(node.right);
+			BinaryKeyValueNode<Key, Value> minright = minimum(node.right);
 			setLeftChild(minright, node.left);
 			resizeUpto(minright, node.right);
 			return node.right;
 		} else { // node.left must be null
-			BinaryNode<Key, Value> maxleft = maximum(node.left);
+			BinaryKeyValueNode<Key, Value> maxleft = maximum(node.left);
 			setRightChild(maxleft, node.right);
 			resizeUpto(maxleft, node.left);
 			return node.left;
@@ -320,7 +320,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param node
 	 * @return node
 	 */
-	protected BinaryNode<Key, Value> maximum(BinaryNode<Key, Value> node) {
+	protected BinaryKeyValueNode<Key, Value> maximum(BinaryKeyValueNode<Key, Value> node) {
 		if (node.right != null)
 			return maximum(node.right);
 		else
@@ -333,7 +333,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param node
 	 * @return node
 	 */
-	protected BinaryNode<Key, Value> minimum(BinaryNode<Key, Value> node) {
+	protected BinaryKeyValueNode<Key, Value> minimum(BinaryKeyValueNode<Key, Value> node) {
 		if (node.left != null)
 			return minimum(node.left);
 		else
@@ -346,7 +346,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * 
 	 * @param node
 	 */
-	protected void resize(BinaryNode<Key, Value> node) {
+	protected void resize(BinaryKeyValueNode<Key, Value> node) {
 		if (node == null)
 			return;
 		node.height = max(height(node.left), height(node.right));
@@ -360,7 +360,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param node
 	 * @return size
 	 */
-	private Integer size(BinaryNode<Key, Value> node) {
+	private Integer size(BinaryKeyValueNode<Key, Value> node) {
 		if (node == null)
 			return 0;
 		else
@@ -388,8 +388,8 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param bottom
 	 * @param top
 	 */
-	private void resizeUpto(BinaryNode<Key, Value> bottom, BinaryNode<Key, Value> top) {
-		BinaryNode<Key, Value> tmp = bottom;
+	private void resizeUpto(BinaryKeyValueNode<Key, Value> bottom, BinaryKeyValueNode<Key, Value> top) {
+		BinaryKeyValueNode<Key, Value> tmp = bottom;
 		while (true) {
 			resize(tmp);
 			if (tmp == top || tmp == null)
@@ -404,7 +404,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param parent
 	 * @param child
 	 */
-	protected void setLeftChild(BinaryNode<Key, Value> parent, BinaryNode<Key, Value> child) {
+	protected void setLeftChild(BinaryKeyValueNode<Key, Value> parent, BinaryKeyValueNode<Key, Value> child) {
 		parent.left = child;
 		if (child != null) {
 			child.parent = parent;
@@ -419,7 +419,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements BST
 	 * @param parent
 	 * @param child
 	 */
-	protected void setRightChild(BinaryNode<Key, Value> parent, BinaryNode<Key, Value> child) {
+	protected void setRightChild(BinaryKeyValueNode<Key, Value> parent, BinaryKeyValueNode<Key, Value> child) {
 		parent.right = child;
 		if (child != null) {
 			child.parent = parent;

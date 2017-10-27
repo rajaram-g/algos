@@ -1,6 +1,6 @@
 package mlogic.algos.struct;
 
-import mlogic.algos.struct.BinaryNode.Orientation;
+import mlogic.algos.struct.BinaryKeyValueNode.Orientation;
 
 /**
  * Implementation of a balanced binary tree. Adjusts the tree after every put or
@@ -71,7 +71,7 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 * @param node
 	 * @return isBalanced
 	 */
-	private boolean isBalanced(BinaryNode<Key, Value> node) {
+	private boolean isBalanced(BinaryKeyValueNode<Key, Value> node) {
 		if (node == null)
 			return true;
 		if (isBalanced(node.left))
@@ -94,9 +94,9 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 * @param value
 	 * @return current node
 	 */
-	private BinaryNode<Key, Value> put(BinaryNode<Key, Value> node, Key key, Value value) {
+	private BinaryKeyValueNode<Key, Value> put(BinaryKeyValueNode<Key, Value> node, Key key, Value value) {
 		if (node == null)
-			return new BinaryNode<Key, Value>(key, value, Orientation.NEUTRAL);
+			return new BinaryKeyValueNode<Key, Value>(key, value, Orientation.NEUTRAL);
 
 		if (key.compareTo(node.key) == 0) {
 			node.value = value;
@@ -124,7 +124,7 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 * @param key
 	 * @return current node after removal of target key and re-balancing
 	 */
-	private BinaryNode<Key, Value> remove(BinaryNode<Key, Value> node, Key key) {
+	private BinaryKeyValueNode<Key, Value> remove(BinaryKeyValueNode<Key, Value> node, Key key) {
 		if (node == null)
 			return null;
 
@@ -163,7 +163,7 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 * @param node
 	 * @return current node
 	 */
-	private BinaryNode<Key, Value> delete(BinaryNode<Key, Value> node) {
+	private BinaryKeyValueNode<Key, Value> delete(BinaryKeyValueNode<Key, Value> node) {
 		if (node.isLeaf()) {
 			node = null;
 			return null;
@@ -185,7 +185,7 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 * @param node
 	 * @return current node after thr tree below it is rebalanced
 	 */
-	private BinaryNode<Key, Value> balance(BinaryNode<Key, Value> node) {
+	private BinaryKeyValueNode<Key, Value> balance(BinaryKeyValueNode<Key, Value> node) {
 		if (node == null)
 			return null;
 		while (true) {
@@ -213,11 +213,11 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 *            remove operation)
 	 * @return current node
 	 */
-	private BinaryNode<Key, Value> rotateLeft(BinaryNode<Key, Value> node, boolean deleteRoot) {
+	private BinaryKeyValueNode<Key, Value> rotateLeft(BinaryKeyValueNode<Key, Value> node, boolean deleteRoot) {
 		if (node.right == null)
 			return node;
 
-		BinaryNode<Key, Value> newroot = deleteMin(node.right);
+		BinaryKeyValueNode<Key, Value> newroot = deleteMin(node.right);
 		if (deleteRoot == false) {
 			node.left = put(node.left, node.key, node.value);
 			node.left.parent = node;
@@ -236,7 +236,7 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 * @param node
 	 * @return min node
 	 */
-	private BinaryNode<Key, Value> deleteMin(BinaryNode<Key, Value> node) {
+	private BinaryKeyValueNode<Key, Value> deleteMin(BinaryKeyValueNode<Key, Value> node) {
 		if (node == null)
 			return null;
 		if (node.left == null) {
@@ -252,8 +252,8 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 			}
 			return node;
 		} else {
-			BinaryNode<Key, Value> newroot = minimum(node);
-			BinaryNode<Key, Value> newrootp = newroot.parent;
+			BinaryKeyValueNode<Key, Value> newroot = minimum(node);
+			BinaryKeyValueNode<Key, Value> newrootp = newroot.parent;
 			setLeftChild(newrootp, newroot.right);
 			balanceUpto(newrootp, node.parent);
 			return newroot;
@@ -271,11 +271,11 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 *            remove operation)
 	 * @return current node
 	 */
-	private BinaryNode<Key, Value> rotateRight(BinaryNode<Key, Value> node, boolean deleteRoot) {
+	private BinaryKeyValueNode<Key, Value> rotateRight(BinaryKeyValueNode<Key, Value> node, boolean deleteRoot) {
 		if (node.left == null)
 			return node;
 
-		BinaryNode<Key, Value> newroot = deleteMax(node.left);
+		BinaryKeyValueNode<Key, Value> newroot = deleteMax(node.left);
 		if (deleteRoot == false) {
 			node.right = put(node.right, node.key, node.value);
 			node.right.parent = node;
@@ -293,7 +293,7 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 * @param node
 	 * @return max node
 	 */
-	private BinaryNode<Key, Value> deleteMax(BinaryNode<Key, Value> node) {
+	private BinaryKeyValueNode<Key, Value> deleteMax(BinaryKeyValueNode<Key, Value> node) {
 		if (node.right == null) {
 			if (node.parent != null) {
 				setLeftChild(node.parent, node.left);
@@ -307,8 +307,8 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 			}
 			return node;
 		} else {
-			BinaryNode<Key, Value> newroot = maximum(node);
-			BinaryNode<Key, Value> newrootp = newroot.parent;
+			BinaryKeyValueNode<Key, Value> newroot = maximum(node);
+			BinaryKeyValueNode<Key, Value> newrootp = newroot.parent;
 			setRightChild(newrootp, newroot.left);
 			balanceUpto(newrootp, node.parent);
 			return newroot;
@@ -324,8 +324,8 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 * @param top
 	 * @return highest balanced node
 	 */
-	private BinaryNode<Key, Value> balanceUpto(BinaryNode<Key, Value> bottom, BinaryNode<Key, Value> top) {
-		BinaryNode<Key, Value> tmp = bottom;
+	private BinaryKeyValueNode<Key, Value> balanceUpto(BinaryKeyValueNode<Key, Value> bottom, BinaryKeyValueNode<Key, Value> top) {
+		BinaryKeyValueNode<Key, Value> tmp = bottom;
 		while (true) {
 			tmp = balance(tmp);
 			if (tmp.parent == null || tmp.parent == top)
@@ -343,7 +343,7 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 * @param node
 	 * @return leans left?
 	 */
-	private boolean leansLeft(BinaryNode<Key, Value> node) {
+	private boolean leansLeft(BinaryKeyValueNode<Key, Value> node) {
 		if (node == null)
 			return false;
 		Integer lh = height(node.left);
@@ -361,7 +361,7 @@ public class BalancedBinarySearchTree<Key extends Comparable<Key>, Value> extend
 	 * @param node
 	 * @return leans right?
 	 */
-	private boolean leansRight(BinaryNode<Key, Value> node) {
+	private boolean leansRight(BinaryKeyValueNode<Key, Value> node) {
 		if (node == null)
 			return false;
 		Integer lh = height(node.left);

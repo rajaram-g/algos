@@ -1,7 +1,7 @@
 package mlogic.algos.dictionary;
 
 import mlogic.algos.struct.BST;
-import mlogic.algos.struct.BinaryNode;
+import mlogic.algos.struct.BinaryKeyValueNode;
 import mlogic.algos.struct.BinarySearchTree;
 
 /**
@@ -33,7 +33,7 @@ public class BSTDictionary implements Dictionary<String, String> {
 	 */
 	@Override
 	public String get(String key) {
-		BinaryNode<String, String> node = this.dictionary.get(key);
+		BinaryKeyValueNode<String, String> node = this.dictionary.get(key);
 		if (node != null)
 			return node.value;
 		else
@@ -72,7 +72,7 @@ public class BSTDictionary implements Dictionary<String, String> {
 	 * @return value
 	 */
 	public String maximum() {
-		BinaryNode<String, String> node = this.dictionary.maximum();
+		BinaryKeyValueNode<String, String> node = this.dictionary.maximum();
 		if (node != null)
 			return node.key;
 		else
@@ -85,7 +85,7 @@ public class BSTDictionary implements Dictionary<String, String> {
 	 * @return value
 	 */
 	public String minimum() {
-		BinaryNode<String, String> node = this.dictionary.minimum();
+		BinaryKeyValueNode<String, String> node = this.dictionary.minimum();
 		if (node != null)
 			return node.key;
 		else
@@ -106,10 +106,10 @@ public class BSTDictionary implements Dictionary<String, String> {
 	public String predecessor(String key) {
 		if (key == null)
 			return null;
-		BinaryNode<String, String> mark = this.dictionary.get(key);
+		BinaryKeyValueNode<String, String> mark = this.dictionary.get(key);
 		if (mark == null)
 			return null;
-		BinaryNode<String, String> pred = this.dictionary.predecessor(mark);
+		BinaryKeyValueNode<String, String> pred = this.dictionary.predecessor(mark);
 
 		if (pred != null)
 			return pred.key;
@@ -131,10 +131,10 @@ public class BSTDictionary implements Dictionary<String, String> {
 	public String successor(String key) {
 		if (key == null)
 			return null;
-		BinaryNode<String, String> mark = this.dictionary.get(key);
+		BinaryKeyValueNode<String, String> mark = this.dictionary.get(key);
 		if (mark == null)
 			return null;
-		BinaryNode<String, String> succ = this.dictionary.successor(mark);
+		BinaryKeyValueNode<String, String> succ = this.dictionary.successor(mark);
 		if (succ != null)
 			return succ.key;
 		else

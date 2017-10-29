@@ -103,7 +103,7 @@ public class ShortestWeightedPathTest {
 	}
 
 	private Graph getSimpleGraph() {
-		Graph graph = new Graph(6);
+		Graph graph = new UndirectedGraph(6);
 		graph.addEdge(0, 1, new BigDecimal(5));
 		graph.addEdge(0, 2, new BigDecimal(10));
 		graph.addEdge(1, 3, new BigDecimal(8));
@@ -114,7 +114,7 @@ public class ShortestWeightedPathTest {
 	}
 
 	private Graph getComplexGraph() {
-		Graph graph = new Graph(10);
+		Graph graph = new UndirectedGraph(10);
 		graph.addEdge(0, 1, new BigDecimal(5));
 		graph.addEdge(1, 2, new BigDecimal(3));
 		graph.addEdge(1, 3, new BigDecimal(10));

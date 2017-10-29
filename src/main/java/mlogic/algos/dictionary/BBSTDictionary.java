@@ -1,6 +1,7 @@
 package mlogic.algos.dictionary;
 
 import mlogic.algos.struct.BalancedBinarySearchTree;
+import mlogic.algos.struct.Tuple;
 
 /**
  * Dictionary implementation based on Balanced Binary Search Tree that
@@ -15,7 +16,7 @@ public class BBSTDictionary extends BSTDictionary {
 	 * Constructor
 	 */
 	public BBSTDictionary() {
-		this.dictionary = new BalancedBinarySearchTree<String, String>();
+		this.dictionary = new BalancedBinarySearchTree<Tuple<String, String>>();
 	}
 
 }

@@ -6,12 +6,12 @@ import mlogic.algos.struct.List;
 import mlogic.algos.struct.SinglyLinkedList;
 
 /**
- * Un-weighted graph data structure.
+ * Graph data structure, defaults to undirected graph
  * 
  * @author Rajaram G
  *
  */
-public class Graph {
+public abstract class Graph {
 
 	/**
 	 * Array to store the edges for each node
@@ -50,15 +50,7 @@ public class Graph {
 	 * @param from
 	 * @param to
 	 */
-	public void addEdge(Integer from, Integer to) {
-		Edge edge = new Edge(from, to);
-		// Allow duplicate edges
-		this.edges[from].put(edge);
-		if (from != to)
-			this.edges[to].put(edge);
-		this.edgeCount++;
-
-	}
+	public abstract void addEdge(Integer from, Integer to);
 
 	/**
 	 * Add a weighted edge
@@ -66,15 +58,7 @@ public class Graph {
 	 * @param from
 	 * @param to
 	 */
-	public void addEdge(Integer from, Integer to, BigDecimal weight) {
-		Edge edge = new Edge(from, to, weight);
-		// Allow duplicate edges
-		this.edges[from].put(edge);
-		if (from != to)
-			this.edges[to].put(edge);
-		this.edgeCount++;
-
-	}
+	public abstract void addEdge(Integer from, Integer to, BigDecimal weight);
 
 	public String toString() {
 		StringBuffer buf = new StringBuffer();

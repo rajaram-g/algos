@@ -54,7 +54,7 @@ public class BFSTest {
 				level[edge.other(node)] = level[node] + 1;
 			}
 		};
-		Graph graph = new Graph(6);
+		Graph graph = new UndirectedGraph(6);
 		graph.addEdge(0, 1);
 		graph.addEdge(0, 2);
 		graph.addEdge(1, 3);
@@ -76,7 +76,7 @@ public class BFSTest {
 				preorder[node] = current++;
 			}
 		};
-		Graph graph = new Graph(6);
+		Graph graph = new UndirectedGraph(6);
 		graph.addEdge(0, 2);
 		graph.addEdge(0, 1);
 		graph.addEdge(1, 3);
@@ -100,7 +100,7 @@ public class BFSTest {
 				postorder[node] = current++;
 			}
 		};
-		Graph graph = new Graph(6);
+		Graph graph = new UndirectedGraph(6);
 		graph.addEdge(0, 2);
 		graph.addEdge(0, 1);
 		graph.addEdge(1, 3);
@@ -124,7 +124,7 @@ public class BFSTest {
 				backEdgeCount[0]++;
 			}
 		};
-		Graph graph = new Graph(6);
+		Graph graph = new UndirectedGraph(6);
 		graph.addEdge(0, 2); // back edge from 2 to 0
 		graph.addEdge(0, 1); // back edge from 1 to 0
 		graph.addEdge(1, 3); // back edge from 3 to 1

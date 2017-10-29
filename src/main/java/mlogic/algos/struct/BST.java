@@ -1,17 +1,19 @@
 package mlogic.algos.struct;
 
+import java.util.NoSuchElementException;
+
+import mlogic.algos.exceptions.ElementAlreadyExistsException;
+
 /**
  * Specifies the methods to be implemented by any Binary Search Tree
  * implementation
  * 
  * @author Rajaram G
  *
- * @param <Key>
- *            Key by which to index and retrieve objects in the tree
- * @param <Value>
- *            The object of interest
+ * @param <T>
+ *            Item to be stored in the tree
  */
-public interface BST<Key extends Comparable<Key>, Value> {
+public interface BST<T extends Comparable<T>> {
 
 	/**
 	 * @return size of the tree
@@ -29,64 +31,61 @@ public interface BST<Key extends Comparable<Key>, Value> {
 	String toString();
 
 	/**
-	 * Traverses the binary tree using the key. If key is found, updates the
-	 * corresponding node with the new value if the key is found.
+	 * Inserts item if it does not already exist in the binary search tree.
 	 * 
-	 * @param key
-	 * @param value
+	 * @param item
 	 */
-	void put(Key key, Value value);
+	void put(T item) throws ElementAlreadyExistsException;
 
 	/**
-	 * Traverses the binary tree using the key, returns the corresponding value
-	 * if the key is found, or null if the key is not found.
+	 * Traverses the binary tree using the item and returns the containing node
+	 * if the item is found.
 	 * 
-	 * @param key
-	 * @return node matching the specified key
+	 * @param item
+	 * @return node containing the specified item
 	 */
-	BinaryKeyValueNode<Key, Value> get(Key key);
+	BinaryNode<T> get(T item) throws NoSuchElementException;
 
 	/**
-	 * Traverses the binary tree using the key If key is found, removes the
-	 * corresponding node wand re-balances the tree. Does nothing if the key is
-	 * not found.
+	 * Traverses the binary tree using item and removes the containing node and
+	 * re-balances the tree.
 	 * 
 	 * @param key
 	 */
-	void remove(Key key);
+	void remove(T item) throws NoSuchElementException;;
 
 	/**
 	 * Returns the right-most node in the tree
 	 * 
 	 * @return value
 	 */
-	BinaryKeyValueNode<Key, Value> maximum();
+	BinaryNode<T> maximum();
 
 	/**
 	 * Returns the left-most node in the tree
 	 * 
 	 * @return value
 	 */
-	BinaryKeyValueNode<Key, Value> minimum();
+	BinaryNode<T> minimum();
 
 	/**
-	 * Finds a node using the given key and returns the node just to the left of
-	 * it in the tree. Returns null if the given key is not found or it is the
-	 * left most entry in the tree.
+	 * Finds a node using the given item and returns the node just to the left
+	 * of it in the tree. Returns null if the given item is not found or it is
+	 * the left most entry in the tree.
 	 * 
 	 * @param node
-	 * @return node containing key and value for predecessor
+	 * @return node containing predecessor item
 	 */
-	BinaryKeyValueNode<Key, Value> predecessor(BinaryKeyValueNode<Key, Value> node);
+	BinaryNode<T> predecessor(BinaryNode<T> node);
 
 	/**
-	 * Finds a node using the given key and returns the node just to the right
-	 * of it in the tree. Returns null if the given key is not found or it is
+	 * Finds a node using the given item and returns the node just to the right
+	 * of it in the tree. Returns null if the given item is not found or it is
 	 * the right most entry in the tree.
 	 * 
 	 * @param node
-	 * @return node containing key and value for successor
+	 * @return node containing successor item
 	 */
-	BinaryKeyValueNode<Key, Value> successor(BinaryKeyValueNode<Key, Value> node);
+	BinaryNode<T> successor(BinaryNode<T> node);
 
 }

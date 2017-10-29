@@ -109,4 +109,11 @@ public class Edge implements Comparable<Edge> {
 
 	}
 
+	/**
+	 * @return reverse of the current edge
+	 */
+	public Edge reverse() {
+		return new Edge(this.to, this.from, this.weight);
+	}
+
 }

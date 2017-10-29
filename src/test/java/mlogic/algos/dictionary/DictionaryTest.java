@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
 import org.junit.Before;
 import org.junit.Test;
 
+import mlogic.algos.exceptions.ElementAlreadyExistsException;
 import mlogic.algos.util.RandomizationHelper;
 
 /**
@@ -108,10 +109,14 @@ public abstract class DictionaryTest {
 	private void testPutDuplicate(Dictionary<String, String> testDict) {
 		int initSize = testDict.size();
 		testDict.put("pepper", "one of the twins");
-		testDict.put("pepper", "the other twin");
+		try {
+			testDict.put("pepper", "the other twin");
+		} catch (ElementAlreadyExistsException e) {
+			e.printStackTrace();
+		}
 		assertEquals(new Integer(initSize + 1), testDict.size());
 		testDict.remove("pepper");
-		testDict.remove("pepper");
+		// testDict.remove("pepper");
 
 		assert (testDict.size() == (initSize));
 
@@ -155,7 +160,12 @@ public abstract class DictionaryTest {
 
 	public void testRemoveNonExistent(Dictionary<String, String> testDict) {
 		int initSize = testDict.size();
-		testDict.remove("no such word");
+		try {
+			testDict.remove("no such word");
+			fail("Remove invalid item did not throw exception");
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		}
 		assert (testDict.size() == (initSize));
 
 	}

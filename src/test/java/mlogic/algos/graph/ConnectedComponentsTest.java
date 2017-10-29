@@ -78,12 +78,12 @@ public class ConnectedComponentsTest {
 	}
 
 	private Graph getSimpleGraph() {
-		Graph graph = new Graph(6);
+		Graph graph = new UndirectedGraph(6);
 		return graph;
 	}
 
 	private Graph getComplexGraph() {
-		Graph graph = new Graph(10);
+		Graph graph = new UndirectedGraph(10);
 		graph.addEdge(1, 2);
 		graph.addEdge(1, 3);
 		graph.addEdge(1, 4);

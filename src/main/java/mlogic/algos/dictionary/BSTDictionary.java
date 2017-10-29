@@ -1,8 +1,9 @@
 package mlogic.algos.dictionary;
 
 import mlogic.algos.struct.BST;
-import mlogic.algos.struct.BinaryKeyValueNode;
+import mlogic.algos.struct.BinaryNode;
 import mlogic.algos.struct.BinarySearchTree;
+import mlogic.algos.struct.Tuple;
 
 /**
  * Dictionary implementation based on an unbalanced Binary Search Tree.
@@ -12,16 +13,51 @@ import mlogic.algos.struct.BinarySearchTree;
  */
 public class BSTDictionary implements Dictionary<String, String> {
 
+	private class Entry implements Comparable<Entry> {
+
+		private String key;
+
+		private String value;
+
+		/**
+		 * @param key
+		 * @param value
+		 */
+		public Entry(String key, String value) {
+			this.key = key;
+			this.value = value;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Comparable#compareTo(java.lang.Object)
+		 */
+		@Override
+		public int compareTo(Entry o) {
+			return this.key.compareTo(o.key);
+		}
+
+		@Override
+		public boolean equals(Object o) {
+
+			if (o instanceof Entry && this.key.equals(((Entry) o).key))
+				return true;
+			return false;
+		}
+
+	}
+
 	/**
 	 * Binary tree structure to store the entries
 	 */
-	protected BST<String, String> dictionary;
+	protected BST<Tuple<String, String>> dictionary;
 
 	/**
 	 * Constructor
 	 */
 	public BSTDictionary() {
-		this.dictionary = new BinarySearchTree<String, String>();
+		this.dictionary = new BinarySearchTree<Tuple<String, String>>();
 	}
 
 	/**
@@ -33,9 +69,9 @@ public class BSTDictionary implements Dictionary<String, String> {
 	 */
 	@Override
 	public String get(String key) {
-		BinaryKeyValueNode<String, String> node = this.dictionary.get(key);
+		BinaryNode<Tuple<String, String>> node = this.dictionary.get(new Tuple<String, String>(key, null));
 		if (node != null)
-			return node.value;
+			return node.item.value;
 		else
 			return null;
 
@@ -52,7 +88,7 @@ public class BSTDictionary implements Dictionary<String, String> {
 	public void put(String key, String value) {
 		if (key == null)
 			return;
-		this.dictionary.put(key, value);
+		this.dictionary.put(new Tuple<String, String>(key, value));
 	}
 
 	/**
@@ -63,7 +99,9 @@ public class BSTDictionary implements Dictionary<String, String> {
 	 * @param key
 	 */
 	public void remove(String key) {
-		this.dictionary.remove(key);
+		if (key == null)
+			return;
+		this.dictionary.remove(new Tuple<String, String>(key, null));
 	}
 
 	/**
@@ -72,9 +110,9 @@ public class BSTDictionary implements Dictionary<String, String> {
 	 * @return value
 	 */
 	public String maximum() {
-		BinaryKeyValueNode<String, String> node = this.dictionary.maximum();
+		BinaryNode<Tuple<String, String>> node = this.dictionary.maximum();
 		if (node != null)
-			return node.key;
+			return node.item.key;
 		else
 			return null;
 	}
@@ -85,9 +123,9 @@ public class BSTDictionary implements Dictionary<String, String> {
 	 * @return value
 	 */
 	public String minimum() {
-		BinaryKeyValueNode<String, String> node = this.dictionary.minimum();
+		BinaryNode<Tuple<String, String>> node = this.dictionary.minimum();
 		if (node != null)
-			return node.key;
+			return node.item.key;
 		else
 			return null;
 	}
@@ -106,13 +144,13 @@ public class BSTDictionary implements Dictionary<String, String> {
 	public String predecessor(String key) {
 		if (key == null)
 			return null;
-		BinaryKeyValueNode<String, String> mark = this.dictionary.get(key);
+		BinaryNode<Tuple<String, String>> mark = this.dictionary.get(new Tuple<String, String>(key, null));
 		if (mark == null)
 			return null;
-		BinaryKeyValueNode<String, String> pred = this.dictionary.predecessor(mark);
+		BinaryNode<Tuple<String, String>> pred = this.dictionary.predecessor(mark);
 
 		if (pred != null)
-			return pred.key;
+			return pred.item.key;
 		else
 			return null;
 	}
@@ -131,12 +169,12 @@ public class BSTDictionary implements Dictionary<String, String> {
 	public String successor(String key) {
 		if (key == null)
 			return null;
-		BinaryKeyValueNode<String, String> mark = this.dictionary.get(key);
+		BinaryNode<Tuple<String, String>> mark = this.dictionary.get(new Tuple<String, String>(key, null));
 		if (mark == null)
 			return null;
-		BinaryKeyValueNode<String, String> succ = this.dictionary.successor(mark);
+		BinaryNode<Tuple<String, String>> succ = this.dictionary.successor(mark);
 		if (succ != null)
-			return succ.key;
+			return succ.item.key;
 		else
 			return null;
 	}

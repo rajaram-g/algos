@@ -1,7 +1,7 @@
 package mlogic.algos.graph;
 
 /**
- * Uses BFS to determine connected components in an un-weighted undirected graph
+ * Uses BFS to determine connected components in an undirected graph
  * 
  * @author Rajaram G
  *
@@ -30,7 +30,8 @@ public class ConnectedComponents {
 	}
 
 	/**
-	 * Performs BFS
+	 * Identify connected components by iterating through the nodes and
+	 * performing BFS on any unmarked node.
 	 */
 	private void compute() {
 		final Integer[] currentIndex = { -1 };

@@ -116,7 +116,7 @@ public class ShortestPathTest {
 	}
 
 	private Graph getSimpleGraph() {
-		Graph graph = new Graph(6);
+		Graph graph = new UndirectedGraph(6);
 		graph.addEdge(0, 1);
 		graph.addEdge(0, 2);
 		graph.addEdge(1, 3);
@@ -127,7 +127,7 @@ public class ShortestPathTest {
 	}
 
 	private Graph getComplexGraph() {
-		Graph graph = new Graph(10);
+		Graph graph = new UndirectedGraph(10);
 		graph.addEdge(0, 1);
 		graph.addEdge(1, 2);
 		graph.addEdge(1, 3);

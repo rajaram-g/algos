@@ -85,7 +85,7 @@ public class CycleDetectorTest {
 	}
 
 	private Graph getComplexGraph() {
-		Graph graph = new Graph(10);
+		Graph graph = new UndirectedGraph(10);
 		graph.addEdge(1, 2);
 		graph.addEdge(1, 3);
 		graph.addEdge(1, 4);
@@ -122,7 +122,7 @@ public class CycleDetectorTest {
 	}
 
 	private Graph getComplexGraphWithoutCycle() {
-		Graph graph = new Graph(10);
+		Graph graph = new UndirectedGraph(10);
 		graph.addEdge(1, 2);
 		graph.addEdge(1, 3);
 		graph.addEdge(1, 4);

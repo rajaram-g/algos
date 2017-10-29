@@ -2,39 +2,39 @@ package mlogic.algos.struct;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.NoSuchElementException;
+
 import org.junit.Test;
 
-import mlogic.algos.struct.BST;
-import mlogic.algos.struct.BinaryKeyValueNode;
-import mlogic.algos.struct.BinarySearchTree;
+import mlogic.algos.exceptions.ElementAlreadyExistsException;
 import mlogic.algos.util.RandomizationHelper;
 
 public class BinarySearchTreeTest {
 
 	@Test
 	public void testPutOne() {
-		BST<Integer, Integer> bst = new BinarySearchTree<Integer, Integer>();
-		bst.put(0, 0);
+		BST<Integer> bst = new BinarySearchTree<Integer>();
+		bst.put(0);
 		assertEquals(new Integer(1), bst.size());
 
 	}
 
 	@Test
 	public void testPutMany() {
-		BST<Integer, Integer> tree = createTestTree();
+		BST<Integer> tree = createTestTree();
 		assertEquals(new Integer(9), tree.size());
 	}
 
 	@Test
 	public void testPutInDecreasingOrder() {
-		BST<Integer, Integer> tree = createDecreasingTestTree();
+		BST<Integer> tree = createDecreasingTestTree();
 		assertEquals(new Integer(9), tree.size());
 		assertEquals(new Integer(9), tree.height());
 	}
 
 	@Test
 	public void testPutInIncreasingOrder() {
-		BST<Integer, Integer> tree = createIncreasingTestTree();
+		BST<Integer> tree = createIncreasingTestTree();
 		assertEquals(new Integer(9), tree.size());
 		assertEquals(new Integer(9), tree.height());
 	}
@@ -43,7 +43,7 @@ public class BinarySearchTreeTest {
 	public void testRandomTrees() {
 		Integer n = 1000;
 		for (int i = 0; i < 10; i++) {
-			BST<String, String> tree = createRandomTree(n);
+			BST<String> tree = createRandomTree(n);
 			assertEquals(n, tree.size());
 		}
 	}
@@ -52,29 +52,29 @@ public class BinarySearchTreeTest {
 	public void testPutsAndDeletesFromRandomTrees() {
 		Integer n = 1000;
 		for (int i = 0; i < 10; i++) {
-			BST<String, String> tree = createAndEmptyRandomTree(n);
+			BST<String> tree = createAndEmptyRandomTree(n);
 			assertEquals(new Integer(0), tree.size());
 		}
 	}
 
 	@Test
 	public void testGet() {
-		BST<Integer, Integer> tree = createTestTree();
-		BinaryKeyValueNode<Integer, Integer> node = tree.get(4);
-		assertEquals(new Integer(4), node.value);
+		BST<Integer> tree = createTestTree();
+		BinaryNode<Integer> node = tree.get(4);
+		assertEquals(new Integer(4), node.item);
 
 	}
 
 	@Test
 	public void testRemoveRoot() {
-		BST<Integer, Integer> tree = createTestTree();
+		BST<Integer> tree = createTestTree();
 		tree.remove(5);
 		assertEquals(new Integer(8), tree.size());
 	}
 
 	@Test
 	public void testRemoveLeaf() {
-		BST<Integer, Integer> tree = createTestTree();
+		BST<Integer> tree = createTestTree();
 		tree.remove(6);
 		assertEquals(new Integer(8), tree.size());
 		tree.remove(7);
@@ -83,22 +83,26 @@ public class BinarySearchTreeTest {
 
 	@Test
 	public void testPutDuplicates() {
-		BST<String, String> tree = createTestTreeWithDuplicates();
+		BST<String> tree = createTestTreeWithDuplicates();
 		assertEquals(new Integer(4), tree.size());
 	}
 
 	@Test
 	public void testRemoveDuplicates() {
-		BST<String, String> tree = createTestTreeWithDuplicates();
+		BST<String> tree = createTestTreeWithDuplicates();
 		tree.remove("pe");
 		assertEquals(new Integer(3), tree.size());
-		tree.remove("pe");
+		try {
+			tree.remove("pe");
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		}
 		assertEquals(new Integer(3), tree.size());
 	}
 
 	@Test
 	public void testRemoveIntermediate() {
-		BST<Integer, Integer> tree = createTestTree();
+		BST<Integer> tree = createTestTree();
 		tree.remove(3);
 		assertEquals(new Integer(8), tree.size());
 		tree.remove(8);
@@ -107,40 +111,40 @@ public class BinarySearchTreeTest {
 
 	@Test
 	public void testRemoveLastNode() {
-		BST<Integer, Integer> tree = new BinarySearchTree<Integer, Integer>();
-		tree.put(5, 5);
+		BST<Integer> tree = new BinarySearchTree<Integer>();
+		tree.put(5);
 		tree.remove(5);
 		assertEquals(new Integer(0), tree.size());
 	}
 
-	private BST<Integer, Integer> createTestTree() {
-		BST<Integer, Integer> tree = new BinarySearchTree<Integer, Integer>();
-		tree.put(5, 5);
-		tree.put(3, 3);
-		tree.put(1, 1);
-		tree.put(2, 2);
-		tree.put(4, 4);
-		tree.put(8, 8);
-		tree.put(7, 7);
-		tree.put(6, 6);
-		tree.put(9, 9);
+	private BST<Integer> createTestTree() {
+		BST<Integer> tree = new BinarySearchTree<Integer>();
+		tree.put(5);
+		tree.put(3);
+		tree.put(1);
+		tree.put(2);
+		tree.put(4);
+		tree.put(8);
+		tree.put(7);
+		tree.put(6);
+		tree.put(9);
 		return tree;
 	}
 
-	private BST<String, String> createRandomTree(Integer n) {
+	private BST<String> createRandomTree(Integer n) {
 		String[] array = RandomizationHelper.getShuffledStringArrayOfSizeN(n);
-		BST<String, String> tree = new BinarySearchTree<String, String>();
+		BST<String> tree = new BinarySearchTree<String>();
 		for (int i = 0; i < array.length; i++)
-			tree.put(array[i], array[i]);
+			tree.put(array[i]);
 
 		return tree;
 	}
 
-	private BST<String, String> createAndEmptyRandomTree(Integer n) {
+	private BST<String> createAndEmptyRandomTree(Integer n) {
 		String[] array = RandomizationHelper.getShuffledStringArrayOfSizeN(n);
-		BST<String, String> tree = new BinarySearchTree<String, String>();
+		BST<String> tree = new BinarySearchTree<String>();
 		for (int i = 0; i < array.length; i++)
-			tree.put(array[i], array[i]);
+			tree.put(array[i]);
 
 		for (int i = 0; i < array.length; i++)
 			tree.remove(array[i]);
@@ -148,41 +152,45 @@ public class BinarySearchTreeTest {
 		return tree;
 	}
 
-	private BST<String, String> createTestTreeWithDuplicates() {
-		BST<String, String> tree = new BinarySearchTree<String, String>();
-		tree.put("aa", "aa");
-		tree.put("zo", "zo");
-		tree.put("mi", "mi");
-		tree.put("pe", "pe");
-		tree.put("pe", "pe");
+	private BST<String> createTestTreeWithDuplicates() {
+		BST<String> tree = new BinarySearchTree<String>();
+		tree.put("aa");
+		tree.put("zo");
+		tree.put("mi");
+		tree.put("pe");
+		try {
+			tree.put("pe");
+		} catch (ElementAlreadyExistsException e) {
+			e.printStackTrace();
+		}
 		return tree;
 	}
 
-	private BST<Integer, Integer> createDecreasingTestTree() {
-		BST<Integer, Integer> tree = new BinarySearchTree<Integer, Integer>();
-		tree.put(9, 9);
-		tree.put(8, 8);
-		tree.put(7, 7);
-		tree.put(6, 6);
-		tree.put(5, 5);
-		tree.put(4, 4);
-		tree.put(3, 3);
-		tree.put(2, 2);
-		tree.put(1, 1);
+	private BST<Integer> createDecreasingTestTree() {
+		BST<Integer> tree = new BinarySearchTree<Integer>();
+		tree.put(9);
+		tree.put(8);
+		tree.put(7);
+		tree.put(6);
+		tree.put(5);
+		tree.put(4);
+		tree.put(3);
+		tree.put(2);
+		tree.put(1);
 		return tree;
 	}
 
-	private BST<Integer, Integer> createIncreasingTestTree() {
-		BST<Integer, Integer> tree = new BinarySearchTree<Integer, Integer>();
-		tree.put(1, 1);
-		tree.put(2, 2);
-		tree.put(3, 3);
-		tree.put(4, 4);
-		tree.put(5, 5);
-		tree.put(6, 6);
-		tree.put(7, 7);
-		tree.put(8, 8);
-		tree.put(9, 9);
+	private BST<Integer> createIncreasingTestTree() {
+		BST<Integer> tree = new BinarySearchTree<Integer>();
+		tree.put(1);
+		tree.put(2);
+		tree.put(3);
+		tree.put(4);
+		tree.put(5);
+		tree.put(6);
+		tree.put(7);
+		tree.put(8);
+		tree.put(9);
 		return tree;
 	}
 }

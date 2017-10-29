@@ -15,7 +15,7 @@ import org.junit.Test;
  * @author Rajaram G
  *
  */
-public class GraphTest {
+public class UndirectedGraphTest {
 
 	/**
 	 * @throws java.lang.Exception
@@ -47,7 +47,7 @@ public class GraphTest {
 
 	@Test
 	public void testASimpleUnweightedGraph() {
-		Graph graph = new Graph(6);
+		Graph graph = new UndirectedGraph(6);
 		graph.addEdge(0, 1);
 		graph.addEdge(0, 2);
 		graph.addEdge(1, 3);
@@ -60,7 +60,7 @@ public class GraphTest {
 
 	@Test
 	public void testASimpleUnweightedGraphWithDuplicates() {
-		Graph graph = new Graph(6);
+		Graph graph = new UndirectedGraph(6);
 		graph.addEdge(0, 1);
 		graph.addEdge(0, 2);
 		graph.addEdge(0, 2);
@@ -75,7 +75,7 @@ public class GraphTest {
 
 	@Test
 	public void testASimpleUnweightedGraphWithSelfEdges() {
-		Graph graph = new Graph(6);
+		Graph graph = new UndirectedGraph(6);
 		graph.addEdge(0, 1);
 		graph.addEdge(0, 0);
 		graph.addEdge(0, 2);
@@ -92,7 +92,7 @@ public class GraphTest {
 	public void testALargeWeightedGraphWithDuplicates() {
 		int nodeCount = 100;
 		int edgeCount = 300;
-		Graph graph = new Graph(nodeCount);
+		Graph graph = new UndirectedGraph(nodeCount);
 		Random random = new Random();
 		for (int e = 0; e < edgeCount; e++) {
 			Integer u = random.nextInt(nodeCount);

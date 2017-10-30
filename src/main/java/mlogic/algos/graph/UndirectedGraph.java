@@ -39,6 +39,7 @@ public class UndirectedGraph extends Graph {
 	 * 
 	 * @param from
 	 * @param to
+	 * @param weight
 	 */
 	@Override
 	public void addEdge(Integer from, Integer to, BigDecimal weight) {

@@ -85,7 +85,7 @@ public class ShortestWeightedPath {
 	 *            end node
 	 */
 	public ShortestWeightedPath(Graph graph, Integer start, Integer end) {
-		checkEmptyGraph(graph);
+		Graph.checkEmpty(graph);
 		checkValidNode(graph, start);
 		checkValidNode(graph, end);
 		this.graph = graph;
@@ -158,6 +158,8 @@ public class ShortestWeightedPath {
 			EdgePlus nearest = null;
 			while (true) {
 				nearest = pq.dequeue();
+				if (nearest == null)
+					break;
 				if (!marked[nearest.to])
 					break;
 			}
@@ -187,16 +189,6 @@ public class ShortestWeightedPath {
 	private void checkValidNode(Graph graph, Integer node) {
 		if (node >= graph.nodeCount || node < 0)
 			throw new IllegalArgumentException(node + "is not a valid node index in the graph.");
-	}
-
-	/**
-	 * Checks if graph is empty
-	 * 
-	 * @param graph
-	 */
-	private void checkEmptyGraph(Graph graph) {
-		if (graph == null || graph.nodeCount <= 0)
-			throw new IllegalArgumentException("No point searching in an empty graph.");
 	}
 
 }

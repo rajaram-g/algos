@@ -54,6 +54,18 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see mlogic.algos.struct.List#add(mlogic.algos.struct.List)
+	 */
+	@Override
+	public void add(List<T> list) {
+		for (T item : list)
+			this.put(item);
+
+	}
+
 	/**
 	 * Removes a node by connecting its parent to its child.
 	 * 

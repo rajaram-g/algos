@@ -71,6 +71,18 @@ public class SortedSinglyLinkedList<T extends Comparable<T>> extends SinglyLinke
 		return size;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see mlogic.algos.struct.List#add(mlogic.algos.struct.List)
+	 */
+	@Override
+	public void add(List<T> list) {
+		for (T item : list)
+			this.put(item);
+
+	}
+
 	/**
 	 * Inserts new node after a specified node.
 	 * 

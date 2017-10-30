@@ -57,8 +57,20 @@ public abstract class Graph {
 	 * 
 	 * @param from
 	 * @param to
+	 * @param weight
 	 */
 	public abstract void addEdge(Integer from, Integer to, BigDecimal weight);
+
+	/**
+	 * Add a weighted edge
+	 * 
+	 * @param from
+	 * @param to
+	 * @param weight
+	 */
+	public void addEdge(Integer from, Integer to, Double weight) {
+		addEdge(from, to, new BigDecimal(weight));
+	}
 
 	public String toString() {
 		StringBuffer buf = new StringBuffer();

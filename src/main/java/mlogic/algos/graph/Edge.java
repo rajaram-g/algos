@@ -65,7 +65,7 @@ public class Edge implements Comparable<Edge> {
 	 * @return target node index
 	 */
 	public Integer to() {
-		return this.from;
+		return this.to;
 	}
 
 	/**

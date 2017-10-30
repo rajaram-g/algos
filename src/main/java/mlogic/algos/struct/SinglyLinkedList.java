@@ -107,10 +107,10 @@ public class SinglyLinkedList<T> implements List<T> {
 	 */
 	@Override
 	public T get(int index) {
-		if (index < 0 || index > this.size())
+		if (index < 0 || index >= this.size())
 			throw new IllegalArgumentException("Index " + index + " is out of range.");
 		Node<T> node = this.root;
-		for (int i = 1; i < index; i++)
+		for (int i = 1; i <= index; i++)
 			node = node.next;
 
 		return node.item;
@@ -216,6 +216,18 @@ public class SinglyLinkedList<T> implements List<T> {
 			node = node.next;
 		}
 		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see mlogic.algos.struct.List#add(mlogic.algos.struct.List)
+	 */
+	@Override
+	public void add(List<T> list) {
+		for (T item : list)
+			this.put(item);
+
 	}
 
 	/**

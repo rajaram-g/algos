@@ -62,4 +62,11 @@ public interface List<T> extends Iterable<T> {
 	 */
 	T[] toArray();
 
+	/**
+	 * Adds items into this list from another list
+	 * 
+	 * @param list
+	 */
+	void add(List<T> list);
+
 }

@@ -73,11 +73,7 @@ public class PrimsMinimumSpanningTree {
 	 * Constructor
 	 * 
 	 * @param graph
-	 *            graph to search
-	 * @param start
-	 *            start node
-	 * @param end
-	 *            end node
+	 *            Undirected graph to search
 	 */
 	public PrimsMinimumSpanningTree(UndirectedGraph graph) {
 		Graph.checkEmpty(graph);

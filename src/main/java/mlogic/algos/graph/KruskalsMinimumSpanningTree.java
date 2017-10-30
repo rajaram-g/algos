@@ -31,11 +31,7 @@ public class KruskalsMinimumSpanningTree {
 	 * Constructor
 	 * 
 	 * @param graph
-	 *            graph to search
-	 * @param start
-	 *            start node
-	 * @param end
-	 *            end node
+	 *            Undirected graph to search
 	 */
 	public KruskalsMinimumSpanningTree(UndirectedGraph graph) {
 		Graph.checkEmpty(graph);

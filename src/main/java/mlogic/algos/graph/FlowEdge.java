@@ -64,7 +64,7 @@ public class FlowEdge extends Edge {
 	 * and increases forward capacity.
 	 * 
 	 * @param bottleneck
-	 * @param v
+	 * @param node
 	 */
 	public void addFlowTo(BigDecimal bottleneck, Integer node) {
 		if (node == this.to())

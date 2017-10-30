@@ -50,7 +50,7 @@ public interface BST<T extends Comparable<T>> {
 	 * Traverses the binary tree using item and removes the containing node and
 	 * re-balances the tree.
 	 * 
-	 * @param key
+	 * @param item
 	 */
 	void remove(T item) throws NoSuchElementException;;
 

@@ -42,8 +42,7 @@ public class BalancedBinarySearchTree<T extends Comparable<T>> extends BinarySea
 	 * Performs binary search to find the right place to update or insert.
 	 * Re-balances the tree after inserts.
 	 * 
-	 * @param key
-	 * @param value
+	 * @param item
 	 */
 	@Override
 	public void put(T item) {
@@ -55,7 +54,7 @@ public class BalancedBinarySearchTree<T extends Comparable<T>> extends BinarySea
 	/**
 	 * Performs binary search to find and delete the node if key exists in tree.
 	 * 
-	 * @param key
+	 * @param item
 	 */
 	@Override
 	public void remove(T item) {
